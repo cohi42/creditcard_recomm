@@ -1,1 +1,5 @@
 card_crawling/data/raw/
+.env
+.env.*
+!.env.example
+card_crawling/logs/
