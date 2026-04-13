@@ -76,6 +76,80 @@ CREATE TABLE exclusions (
   exclusion_type TEXT,
   FOREIGN KEY (benefit_id) REFERENCES benefits(benefit_id)
 );
+
+CREATE INDEX idx_benefits_card_category ON benefits (card_id, category);
+
+CREATE VIEW v_card_notice AS
+WITH note_rows AS (
+  SELECT
+    b.card_id,
+    b.benefit_id,
+    TRIM(b.raw_info) AS note_text
+  FROM benefits AS b
+  WHERE b.category = '유의사항'
+    AND COALESCE(TRIM(b.raw_info), '') <> ''
+),
+note_rollup AS (
+  SELECT
+    card_id,
+    GROUP_CONCAT(note_text, '\n\n[[COMMON_NOTE_SPLIT]]\n\n') OVER (
+      PARTITION BY card_id
+      ORDER BY benefit_id
+      ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+    ) AS notice_text,
+    COUNT(*) OVER (PARTITION BY card_id) AS notice_count,
+    ROW_NUMBER() OVER (PARTITION BY card_id ORDER BY benefit_id DESC) AS rn
+  FROM note_rows
+)
+SELECT
+  card_id,
+  notice_text,
+  notice_count
+FROM note_rollup
+WHERE rn = 1;
+
+CREATE VIEW v_benefits_for_structuring AS
+SELECT
+  b.benefit_id,
+  b.card_id,
+  b.category,
+  b.raw_info,
+  n.notice_text AS common_notes,
+  COALESCE(n.notice_count, 0) AS common_note_count,
+  '[혜택 원문 시작]\n' || COALESCE(b.raw_info, '') || '\n[혜택 원문 끝]' AS effective_info,
+  '[공통 유의사항 시작]\n' || COALESCE(n.notice_text, '') || '\n[공통 유의사항 끝]' AS common_notes_block
+FROM benefits AS b
+LEFT JOIN v_card_notice AS n ON n.card_id = b.card_id
+WHERE b.category <> '유의사항';
+
+CREATE VIEW v_benefits_for_recommendation AS
+SELECT
+  s.benefit_id,
+  s.card_id,
+  s.category,
+  s.raw_info,
+  s.common_notes,
+  s.common_note_count,
+  CASE
+    WHEN s.common_notes IS NULL OR s.common_notes = ''
+      THEN s.effective_info
+    ELSE
+      s.effective_info
+      || '\n\n'
+      || s.common_notes_block
+  END AS effective_info
+FROM v_benefits_for_structuring AS s;
+
+CREATE VIEW v_benefits_for_model AS
+SELECT
+  benefit_id,
+  card_id,
+  category,
+  raw_info,
+  common_notes,
+  common_note_count,
+  effective_info
+FROM v_benefits_for_recommendation;
 `);
 
 const insertCardStmt = db.prepare(`
