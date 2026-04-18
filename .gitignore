@@ -5,3 +5,5 @@ card_crawling/data/raw/
 card_crawling/logs/
 cards.db
 scheduler.md
+추가방안.md
+test_outputs
