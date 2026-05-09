@@ -135,7 +135,7 @@ function parseArgs(argv) {
 
 function printHelpAndExit() {
   console.log(`Usage:
-  node card_crawling/structure_cafe_benefits_with_gemini.js [options]
+  node structurization/structure_cafe_benefits_with_gemini.js [options]
 
 Options:
   --db <path>              SQLite DB path (default: ./cards.db)

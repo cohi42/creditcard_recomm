@@ -104,7 +104,7 @@ flowchart LR
     A["benefits(category='유의사항')"] --> B["v_card_notice<br/>ordered by benefit_id"]
     C["benefits(category!='유의사항')"] --> D["v_benefits_for_structuring"]
     B --> D
-    D --> E["정형화 파이프라인<br/>structure_cafe_benefits_with_gemini.js"]
+    D --> E["정형화 파이프라인<br/>structurization/structure_cafe_benefits_with_gemini.js"]
     D --> F["v_benefits_for_recommendation"]
     F --> G["추천/적용판단 파이프라인"]
 ```

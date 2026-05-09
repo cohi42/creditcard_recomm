@@ -3,6 +3,8 @@ const path = require('node:path');
 const { DatabaseSync } = require('node:sqlite');
 
 const CAFE_CATEGORY = '\uCE74\uD398';
+const DEFAULT_DB_FILE = 'cafe_v2_보강.db';
+const DEFAULT_DB_PATH = path.resolve(__dirname, DEFAULT_DB_FILE);
 const DEFAULT_CARD_IDS = [10, 105, 161, 208, 231, 263, 574];
 const DEFAULT_MODEL = 'gemini-2.5-flash';
 const DEFAULT_YEAR = 2026;
@@ -33,7 +35,7 @@ function sleep(ms) {
 
 function parseArgs(argv) {
   const parsed = {
-    dbPath: path.resolve(__dirname, 'cards.db'),
+    dbPath: DEFAULT_DB_PATH,
     inputPath: path.resolve(__dirname, 'evaluation_input.json'),
     outputDir: path.resolve(__dirname, 'test_outputs', 'test_simulation'),
     outputXlsx: null,
@@ -157,7 +159,7 @@ function printHelpAndExit() {
   node recommendation_testing_pipeline.js [options]
 
 Options:
-  --db <path>                 SQLite DB path (default: ./cards.db)
+  --db <path>                 SQLite DB path (default: ./${DEFAULT_DB_FILE})
   --input <path>              evaluation_input.json path
   --output-dir <path>         output directory
   --output-xlsx <path>        output XLSX path
@@ -267,25 +269,20 @@ function loadCardData(dbPath, cardIds) {
   const benefitsRows = db
     .prepare(
       `SELECT
-         v.benefit_id,
-         v.card_id,
-         v.category,
-         v.raw_info,
-         v.common_notes,
-         v.common_note_count,
-         v.effective_info,
-         b.discount_rate,
-         b.discount_amount,
-         b.discount_type,
-         b.frequency_limit,
-         b.per_transaction_limit,
-         b.monthly_discount_limit,
-         b.min_spend
-       FROM v_benefits_for_recommendation AS v
-       JOIN benefits AS b ON b.benefit_id = v.benefit_id
-       WHERE v.card_id IN (${placeholders})
-         AND v.category = ?
-       ORDER BY v.card_id, v.benefit_id`
+         benefit_id,
+         card_id,
+         category,
+         discount_rate,
+         discount_amount,
+         discount_type,
+         frequency_limit,
+         per_transaction_limit,
+         monthly_discount_limit,
+         min_spend
+       FROM benefits
+       WHERE card_id IN (${placeholders})
+         AND category = ?
+       ORDER BY card_id, benefit_id`
     )
     .all(...cardIds, CAFE_CATEGORY);
 
@@ -379,10 +376,6 @@ function loadCardData(dbPath, cardIds) {
       performance_tiers: tiersByBenefitId.get(benefitRow.benefit_id) ?? [],
       brands: brandsByBenefitId.get(benefitRow.benefit_id) ?? [],
       exclusions: exclusionsByBenefitId.get(benefitRow.benefit_id) ?? [],
-      raw_info: benefitRow.raw_info,
-      common_notes: benefitRow.common_notes,
-      common_note_count: benefitRow.common_note_count,
-      effective_info: benefitRow.effective_info,
     });
   }
 
@@ -395,7 +388,7 @@ function loadCardData(dbPath, cardIds) {
       throw new Error(`Card not found in DB: ${cardId}`);
     }
     if (!Array.isArray(card.benefits) || card.benefits.length < 1) {
-      throw new Error(`No cafe benefits found in view for card_id=${cardId}`);
+      throw new Error(`No cafe benefits found in DB for card_id=${cardId}`);
     }
     cards.push(card);
   }

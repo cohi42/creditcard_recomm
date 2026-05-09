@@ -3,8 +3,55 @@ const path = require('node:path');
 const { DatabaseSync } = require('node:sqlite');
 
 const projectRoot = path.resolve(__dirname, '..');
-const dbPath = path.join(projectRoot, 'cards.db');
-const rawDir = path.join(__dirname, 'data', 'raw');
+
+function parseArgs(argv) {
+  const parsed = {
+    dbPath: path.join(projectRoot, 'cards.db'),
+    rawDir: path.join(projectRoot, 'card_crawling', 'data', 'raw'),
+  };
+
+  for (let index = 2; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === '--db' && argv[index + 1]) {
+      parsed.dbPath = path.resolve(argv[index + 1]);
+      index += 1;
+      continue;
+    }
+    if (arg === '--raw-dir' && argv[index + 1]) {
+      parsed.rawDir = path.resolve(argv[index + 1]);
+      index += 1;
+      continue;
+    }
+    if (arg === '--help' || arg === '-h') {
+      printHelpAndExit();
+    }
+  }
+
+  return parsed;
+}
+
+function printHelpAndExit() {
+  console.log(`Usage:
+  node structurization/load_raw_to_sqlite.js [options]
+
+Options:
+  --db <path>       SQLite DB output path (default: ./cards.db)
+  --raw-dir <path>  Raw card JSON directory (default: ./card_crawling/data/raw)
+  -h, --help        Show this help
+`);
+  process.exit(0);
+}
+
+function ensureDirForFile(filePath) {
+  const dirPath = path.dirname(filePath);
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+const args = parseArgs(process.argv);
+const dbPath = args.dbPath;
+const rawDir = args.rawDir;
 
 function mapIsCredit(cType) {
   if (cType === 'D') return 0;
@@ -15,6 +62,8 @@ function mapIsCredit(cType) {
 if (!fs.existsSync(rawDir)) {
   throw new Error(`Raw data directory not found: ${rawDir}`);
 }
+
+ensureDirForFile(dbPath);
 
 if (fs.existsSync(dbPath)) {
   fs.unlinkSync(dbPath);
