@@ -8,7 +8,7 @@ cards.db
 cards copy.db
 cafe_v2_보강.db
 structurization/enrichment_log.json
-structurization/enrichment_debug/
 scheduler.md
 추가방안.md
 test_outputs
+notice_enrichment_delta.json
