@@ -38,17 +38,11 @@ const TENANT_STORE_EXCLUSION_KEYWORDS = [
   '대형시설',
 ];
 const TEMPLATE_BRAND_WEIGHTS = {
-  generic_light: [[GENERIC_CAFE, 1]],
-  generic_frequent_light: [[GENERIC_CAFE, 1]],
   starbucks_light: [['스타벅스', 1]],
   starbucks_heavy: [['스타벅스', 1]],
   premium_hopper: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 2], ['폴바셋', 1]],
-  coffeebean_twosome: [['커피빈', 3], ['투썸플레이스', 3], ['스타벅스', 1]],
-  budget_frequent: [['메가커피', 2], ['컴포즈커피', 2], ['빽다방', 2], ['이디야', 1]],
   ultra_budget_coffee: [['메가커피', 3], ['컴포즈커피', 3], ['빽다방', 2], ['더벤티', 1]],
-  high_ticket_social: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 1], [GENERIC_CAFE, 1]],
-  premium_chain_group: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 1], ['폴바셋', 1]],
-  department_store_social: [['스타벅스', 2], ['폴바셋', 2], ['투썸플레이스', 1], ['커피빈', 1], [GENERIC_CAFE, 1]],
+  premium_cafe_social: [['폴바셋', 2], ['스타벅스', 2], ['엔제리너스', 1], ['투썸플레이스', 1], [GENERIC_CAFE, 2]],
   ediya_local: [['이디야', 3], ['메가커피', 1], ['컴포즈커피', 1]],
 };
 const TEMPLATE_TRANSACTION_CONTEXT = {
@@ -317,6 +311,22 @@ function expandedTransactions(persona) {
   for (const rawContext of String(persona.transaction_context ?? '').split(',')) {
     const context = rawContext.trim();
     if (context) contextFlags.add(context);
+  }
+
+  const explicitBrands = String(persona.transaction_brands ?? '')
+    .split(';')
+    .map((brand) => normalizeBrand(brand))
+    .filter(Boolean);
+  const explicitAmounts = String(persona.transaction_amounts ?? '')
+    .split(';')
+    .map((amount) => Number(amount))
+    .filter((amount) => Number.isFinite(amount) && amount > 0);
+  if (explicitBrands.length > 0 && explicitBrands.length === explicitAmounts.length) {
+    return explicitBrands.map((brand, index) => ({
+      brand,
+      amount: explicitAmounts[index],
+      contextFlags,
+    }));
   }
 
   for (const [brandText, weight] of brandWeights) {

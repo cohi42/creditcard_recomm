@@ -124,6 +124,8 @@ class PersonaTemplate:
     brand_weights: tuple[tuple[str, int], ...]
     monthly_transactions: int
     avg_ticket: int
+    previous_month_spending: int | None = None
+    total_monthly_cafe_spend: int | None = None
     transaction_context: tuple[str, ...] = ()
 
 
@@ -755,21 +757,65 @@ def dedupe_scoring_benefits(
     ]
 
 
+def distribute_amounts(total: int, count: int, avg_ticket: int) -> list[int]:
+    if count <= 0:
+        return []
+
+    base = max(100, int(round((total / count) / 100)) * 100 if total else avg_ticket)
+    amounts = [base for _ in range(count)]
+    delta = total - sum(amounts)
+    index = 0
+    guard = 0
+    while delta != 0 and guard < count * 100:
+        step = 100 if abs(delta) >= 100 else abs(delta)
+        if delta > 0:
+            amounts[index] += step
+            delta -= step
+        elif amounts[index] - step >= 100:
+            amounts[index] -= step
+            delta += step
+        index = (index + 1) % count
+        guard += 1
+    return amounts
+
+
 def expanded_transactions(template: PersonaTemplate) -> list[Tx]:
+    context_flags = frozenset(template.transaction_context)
+
+    if template.total_monthly_cafe_spend is not None:
+        brands: list[str] = []
+        for brand, count in template.brand_weights:
+            brands.extend([normalize_brand(brand)] * max(0, int(count)))
+        if len(brands) < template.monthly_transactions:
+            brands.extend([GENERIC_CAFE] * (template.monthly_transactions - len(brands)))
+        brands = brands[: template.monthly_transactions]
+        amounts = distribute_amounts(template.total_monthly_cafe_spend, len(brands), template.avg_ticket)
+        return [
+            Tx(brand=brand, amount=amount, context_flags=context_flags)
+            for brand, amount in zip(brands, amounts)
+        ]
+
     weighted: list[str] = []
     for brand, weight in template.brand_weights:
-        weighted.extend([brand] * max(1, int(weight)))
+        weighted.extend([normalize_brand(brand)] * max(1, int(weight)))
     if not weighted:
         weighted = [GENERIC_CAFE]
 
     amount_multipliers = [0.85, 1.0, 1.15, 0.95, 1.25]
     transactions: list[Tx] = []
-    context_flags = frozenset(template.transaction_context)
     for index in range(template.monthly_transactions):
         brand = weighted[index % len(weighted)]
         amount = int(round(template.avg_ticket * amount_multipliers[index % len(amount_multipliers)] / 100)) * 100
         transactions.append(Tx(brand=brand, amount=max(100, amount), context_flags=context_flags))
     return transactions
+
+
+def transaction_brand_counts(transactions: list[Tx]) -> str:
+    counter = Counter(tx.brand for tx in transactions)
+    labels = []
+    for brand, count in counter.items():
+        labels.append(f"{'카페 업종 일반' if brand == GENERIC_CAFE else brand} {count}회")
+    return ", ".join(labels)
 
 
 def score_card(
@@ -832,107 +878,81 @@ def score_card(
 def persona_templates() -> list[PersonaTemplate]:
     return [
         PersonaTemplate(
-            key="generic_light",
-            label="카페 업종 소액형",
-            description="브랜드를 특정하지 않는 월 4회 소액 카페 소비",
-            brand_weights=((GENERIC_CAFE, 1),),
-            monthly_transactions=4,
-            avg_ticket=4500,
-        ),
-        PersonaTemplate(
-            key="generic_frequent_light",
-            label="카페 업종 반복 소액형",
-            description="브랜드를 특정하지 않고 가까운 카페를 월 15회 정도 반복 이용",
-            brand_weights=((GENERIC_CAFE, 1),),
-            monthly_transactions=15,
-            avg_ticket=4500,
+            key="starbucks_heavy",
+            label="스타벅스 다빈도형",
+            description="스타벅스를 출근길·점심 후·주말까지 반복 이용하는 고빈도 직장인",
+            brand_weights=(("스타벅스", 18), ("투썸플레이스", 1), (GENERIC_CAFE, 3)),
+            monthly_transactions=22,
+            avg_ticket=6000,
+            previous_month_spending=1000000,
+            total_monthly_cafe_spend=137900,
         ),
         PersonaTemplate(
             key="starbucks_light",
             label="스타벅스 가끔형",
-            description="스타벅스 월 6회, 평균 6천원대",
-            brand_weights=(("스타벅스", 1),),
+            description="스타벅스를 좋아하지만 헤비 유저는 아닌 라이트 학생",
+            brand_weights=(("스타벅스", 6),),
             monthly_transactions=6,
-            avg_ticket=6500,
-        ),
-        PersonaTemplate(
-            key="starbucks_heavy",
-            label="스타벅스 다빈도형",
-            description="스타벅스 월 20회 이상, 월 한도와 횟수 제한 영향이 큼",
-            brand_weights=(("스타벅스", 1),),
-            monthly_transactions=22,
-            avg_ticket=6500,
-        ),
-        PersonaTemplate(
-            key="premium_hopper",
-            label="주요 프리미엄 체인 순회형",
-            description="스타벅스/투썸/커피빈/폴바셋을 고르게 이용",
-            brand_weights=(("스타벅스", 2), ("투썸플레이스", 2), ("커피빈", 2), ("폴바셋", 1)),
-            monthly_transactions=12,
-            avg_ticket=9000,
-        ),
-        PersonaTemplate(
-            key="coffeebean_twosome",
-            label="커피빈·투썸 집중형",
-            description="스타벅스보다 커피빈/투썸 비중이 높은 소비",
-            brand_weights=(("커피빈", 3), ("투썸플레이스", 3), ("스타벅스", 1)),
-            monthly_transactions=10,
-            avg_ticket=8500,
-        ),
-        PersonaTemplate(
-            key="budget_frequent",
-            label="저가 체인 다빈도형",
-            description="메가커피/컴포즈/빽다방/이디야 중심의 잦은 소액 결제",
-            brand_weights=(("메가커피", 2), ("컴포즈커피", 2), ("빽다방", 2), ("이디야", 1)),
-            monthly_transactions=20,
-            avg_ticket=3500,
-        ),
-        PersonaTemplate(
-            key="ultra_budget_coffee",
-            label="저가커피 초저가 다빈도형",
-            description="메가커피/컴포즈/빽다방/더벤티처럼 2,500-3,000원대 저가커피를 반복 이용",
-            brand_weights=(("메가커피", 3), ("컴포즈커피", 3), ("빽다방", 2), ("더벤티", 1)),
-            monthly_transactions=18,
-            avg_ticket=2800,
-        ),
-        PersonaTemplate(
-            key="high_ticket_social",
-            label="고액 결제 모임형",
-            description="카페에서 한 번에 1.5만원 이상 결제하는 모임/업무형",
-            brand_weights=(("스타벅스", 2), ("투썸플레이스", 2), ("커피빈", 1), (GENERIC_CAFE, 1)),
-            monthly_transactions=6,
-            avg_ticket=18000,
-        ),
-        PersonaTemplate(
-            key="premium_chain_group",
-            label="프리미엄 체인 단체결제형",
-            description="스타벅스/투썸/커피빈/폴바셋에서 모임 비용을 한 번에 결제하는 고액 티켓형",
-            brand_weights=(("스타벅스", 2), ("투썸플레이스", 2), ("커피빈", 1), ("폴바셋", 1)),
-            monthly_transactions=8,
-            avg_ticket=45000,
-        ),
-        PersonaTemplate(
-            key="department_store_social",
-            label="백화점 카페 모임형",
-            description="백화점/쇼핑몰 입점 카페에서 지인 모임을 주로 하는 고액 결제형",
-            brand_weights=(
-                ("스타벅스", 2),
-                ("폴바셋", 2),
-                ("투썸플레이스", 1),
-                ("커피빈", 1),
-                (GENERIC_CAFE, 1),
-            ),
-            monthly_transactions=8,
-            avg_ticket=16000,
-            transaction_context=(TENANT_STORE_CONTEXT,),
+            avg_ticket=6000,
+            previous_month_spending=300000,
+            total_monthly_cafe_spend=34800,
         ),
         PersonaTemplate(
             key="ediya_local",
             label="이디야 생활권형",
-            description="이디야와 생활형 저가 브랜드를 섞어 이용",
-            brand_weights=(("이디야", 3), ("메가커피", 1), ("컴포즈커피", 1)),
-            monthly_transactions=14,
-            avg_ticket=4200,
+            description="이디야와 생활권 저가 브랜드를 섞어 반복 이용",
+            brand_weights=(("이디야", 9), ("메가커피", 2), ("컴포즈커피", 1), (GENERIC_CAFE, 3)),
+            monthly_transactions=15,
+            avg_ticket=4000,
+            previous_month_spending=300000,
+            total_monthly_cafe_spend=62800,
+        ),
+        PersonaTemplate(
+            key="premium_cafe_social",
+            label="프리미엄 카페 모임형",
+            description="평일 직장 미팅과 주말 친구 모임에서 일행 음료·디저트까지 결제하는 호스트형 직장인",
+            brand_weights=(
+                ("폴바셋", 2),
+                ("스타벅스", 2),
+                ("엔제리너스", 1),
+                ("투썸플레이스", 1),
+                (GENERIC_CAFE, 2),
+            ),
+            monthly_transactions=8,
+            avg_ticket=18000,
+            previous_month_spending=800000,
+            total_monthly_cafe_spend=144500,
+        ),
+        PersonaTemplate(
+            key="premium_hopper",
+            label="주요 프리미엄 체인 순회형",
+            description="스타벅스·투썸·커피빈·폴바셋을 상황에 따라 고르게 이용",
+            brand_weights=(
+                ("스타벅스", 4),
+                ("투썸플레이스", 3),
+                ("커피빈", 2),
+                ("폴바셋", 2),
+                (GENERIC_CAFE, 2),
+            ),
+            monthly_transactions=13,
+            avg_ticket=9000,
+            previous_month_spending=300000,
+            total_monthly_cafe_spend=119600,
+        ),
+        PersonaTemplate(
+            key="ultra_budget_coffee",
+            label="저가커피 초저가 다빈도형",
+            description="메가MGC커피·컴포즈커피·빽다방·더벤티를 3천원 안팎으로 반복 이용",
+            brand_weights=(
+                ("메가커피", 8),
+                ("컴포즈커피", 5),
+                ("빽다방", 4),
+                ("더벤티", 2),
+            ),
+            monthly_transactions=19,
+            avg_ticket=3000,
+            previous_month_spending=300000,
+            total_monthly_cafe_spend=52500,
         ),
     ]
 
@@ -972,8 +992,17 @@ def derive_persona_candidates(
     all_candidates: list[dict[str, Any]] = []
     matrix_rows: list[dict[str, Any]] = []
 
-    for spend in spend_levels:
-        for template in templates:
+    fixed_persona_mode = all(template.previous_month_spending is not None for template in templates)
+
+    for template_order, template in enumerate(templates, start=1):
+        template_spend_levels = (
+            [template.previous_month_spending]
+            if template.previous_month_spending is not None
+            else spend_levels
+        )
+        for spend in template_spend_levels:
+            if spend is None:
+                continue
             transactions = expanded_transactions(template)
             total_cafe_spend = sum(tx.amount for tx in transactions)
             ranked: list[dict[str, Any]] = []
@@ -1023,6 +1052,7 @@ def derive_persona_candidates(
 
             candidate = {
                 "candidate_id": candidate_id,
+                "template_order": template_order,
                 "persona_label": f"{template.label} / 전월 {money(spend)}원",
                 "base_pattern": template.label,
                 "description": template.description,
@@ -1030,10 +1060,9 @@ def derive_persona_candidates(
                 "monthly_cafe_transactions": template.monthly_transactions,
                 "avg_ticket": template.avg_ticket,
                 "estimated_monthly_cafe_spend": total_cafe_spend,
-                "brand_mix": ", ".join(
-                    "카페 업종" if brand == GENERIC_CAFE else brand
-                    for brand, _ in template.brand_weights
-                ),
+                "brand_mix": transaction_brand_counts(transactions),
+                "transaction_brands": ";".join(tx.brand for tx in transactions),
+                "transaction_amounts": ";".join(str(tx.amount) for tx in transactions),
                 "transaction_context": ", ".join(template.transaction_context),
                 "top1_card_id": top1["card_id"],
                 "top1_card_name": top1["card_name"],
@@ -1086,6 +1115,16 @@ def derive_persona_candidates(
     compelling_candidates = [
         candidate for candidate in all_candidates if candidate["is_compelling"] == "yes"
     ]
+
+    if fixed_persona_mode:
+        selected = [
+            {**candidate, "selected_order": index}
+            for index, candidate in enumerate(
+                sorted(compelling_candidates, key=lambda row: row["template_order"]),
+                start=1,
+            )
+        ]
+        return all_candidates, compelling_candidates, selected, matrix_rows
 
     def top5_ids(candidate: dict[str, Any]) -> set[int]:
         ids: set[int] = set()

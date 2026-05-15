@@ -1,0 +1,710 @@
+{
+  "personas": [
+    {
+      "persona_name": "페르소나 1: 스타벅스 다빈도형",
+      "usage_concept": "스타벅스를 출근길·점심 후·주말까지 반복 이용하는 고빈도 사용자 (직장인 가정)",
+      "previous_month_performance": "1,000,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/1",
+          "day_of_week": "월",
+          "time": "08:35",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6000
+        },
+        {
+          "id": 2,
+          "date": "4/2",
+          "day_of_week": "화",
+          "time": "08:25",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 3,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "08:30",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5800
+        },
+        {
+          "id": 4,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "14:10",
+          "merchant": "스타벅스 신사역점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 5,
+          "date": "4/4",
+          "day_of_week": "목",
+          "time": "08:30",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6500
+        },
+        {
+          "id": 6,
+          "date": "4/5",
+          "day_of_week": "금",
+          "time": "09:10",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 7800
+        },
+        {
+          "id": 7,
+          "date": "4/6",
+          "day_of_week": "토",
+          "time": "14:20",
+          "merchant": "스타벅스 신세계강남점",
+          "amount_krw": 8500
+        },
+        {
+          "id": 8,
+          "date": "4/7",
+          "day_of_week": "일",
+          "time": "13:30",
+          "merchant": "모카포트 가로수길",
+          "amount_krw": 4500
+        },
+        {
+          "id": 9,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "08:35",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 10,
+          "date": "4/10",
+          "day_of_week": "수",
+          "time": "08:25",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6000
+        },
+        {
+          "id": 11,
+          "date": "4/11",
+          "day_of_week": "목",
+          "time": "08:30",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 12,
+          "date": "4/11",
+          "day_of_week": "목",
+          "time": "14:50",
+          "merchant": "투썸플레이스 강남역점",
+          "amount_krw": 7200
+        },
+        {
+          "id": 13,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "08:40",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6500
+        },
+        {
+          "id": 14,
+          "date": "4/13",
+          "day_of_week": "토",
+          "time": "15:00",
+          "merchant": "스타벅스 롯데월드몰점",
+          "amount_krw": 8800
+        },
+        {
+          "id": 15,
+          "date": "4/14",
+          "day_of_week": "일",
+          "time": "13:00",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6200
+        },
+        {
+          "id": 16,
+          "date": "4/15",
+          "day_of_week": "월",
+          "time": "08:30",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5800
+        },
+        {
+          "id": 17,
+          "date": "4/16",
+          "day_of_week": "화",
+          "time": "14:00",
+          "merchant": "트래버틴 한남",
+          "amount_krw": 5500
+        },
+        {
+          "id": 18,
+          "date": "4/17",
+          "day_of_week": "수",
+          "time": "08:25",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 19,
+          "date": "4/18",
+          "day_of_week": "목",
+          "time": "08:35",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6500
+        },
+        {
+          "id": 20,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "09:00",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 6800
+        },
+        {
+          "id": 21,
+          "date": "4/22",
+          "day_of_week": "월",
+          "time": "08:30",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 5800
+        },
+        {
+          "id": 22,
+          "date": "4/24",
+          "day_of_week": "수",
+          "time": "13:50",
+          "merchant": "어반플랜트 성수점",
+          "amount_krw": 6200
+        }
+      ]
+    },
+    {
+      "persona_name": "페르소나 2: 스타벅스 가끔형",
+      "usage_concept": "스타벅스를 좋아하지만 헤비 유저는 아닌 라이트 사용자 (학생 가정)",
+      "previous_month_performance": "300,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/2",
+          "day_of_week": "화",
+          "time": "14:30",
+          "merchant": "스타벅스 수원아주대점",
+          "amount_krw": 5500
+        },
+        {
+          "id": 2,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "17:00",
+          "merchant": "스타벅스 수원아주대점",
+          "amount_krw": 6200
+        },
+        {
+          "id": 3,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "13:45",
+          "merchant": "카페메이븐",
+          "amount_krw": 4500
+        },
+        {
+          "id": 4,
+          "date": "4/15",
+          "day_of_week": "월",
+          "time": "19:00",
+          "merchant": "스타벅스 수원아주대점",
+          "amount_krw": 6800
+        },
+        {
+          "id": 5,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "18:30",
+          "merchant": "스타벅스 수원아주대점",
+          "amount_krw": 6000
+        },
+        {
+          "id": 6,
+          "date": "4/22",
+          "day_of_week": "월",
+          "time": "16:30",
+          "merchant": "스타벅스 수원아주대점",
+          "amount_krw": 5800
+        }
+      ]
+    },
+    {
+      "persona_name": "페르소나 3: 이디야 생활권형",
+      "usage_concept": "학교·회사·동네 주변에서 이디야를 중심으로 생활권 카페를 반복 이용하는 사용자 (학생 가정)",
+      "previous_month_performance": "300,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/1",
+          "day_of_week": "월",
+          "time": "10:00",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4500
+        },
+        {
+          "id": 2,
+          "date": "4/2",
+          "day_of_week": "화",
+          "time": "14:30",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4200
+        },
+        {
+          "id": 3,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "11:30",
+          "merchant": "메가커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 4,
+          "date": "4/5",
+          "day_of_week": "금",
+          "time": "09:30",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4200
+        },
+        {
+          "id": 5,
+          "date": "4/5",
+          "day_of_week": "금",
+          "time": "13:00",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4500
+        },
+        {
+          "id": 6,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "10:30",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4200
+        },
+        {
+          "id": 7,
+          "date": "4/9",
+          "day_of_week": "화",
+          "time": "15:00",
+          "merchant": "카페쿠츠",
+          "amount_krw": 4000
+        },
+        {
+          "id": 8,
+          "date": "4/10",
+          "day_of_week": "수",
+          "time": "11:00",
+          "merchant": "컴포즈커피 수원아주대점",
+          "amount_krw": 3500
+        },
+        {
+          "id": 9,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "14:30",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4500
+        },
+        {
+          "id": 10,
+          "date": "4/15",
+          "day_of_week": "월",
+          "time": "10:30",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4200
+        },
+        {
+          "id": 11,
+          "date": "4/16",
+          "day_of_week": "화",
+          "time": "10:00",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4200
+        },
+        {
+          "id": 12,
+          "date": "4/16",
+          "day_of_week": "화",
+          "time": "13:30",
+          "merchant": "메가커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 13,
+          "date": "4/22",
+          "day_of_week": "월",
+          "time": "14:00",
+          "merchant": "팬도로시 아주대학생회관점",
+          "amount_krw": 5200
+        },
+        {
+          "id": 14,
+          "date": "4/24",
+          "day_of_week": "수",
+          "time": "10:00",
+          "merchant": "이디야 인계중앙점",
+          "amount_krw": 4500
+        },
+        {
+          "id": 15,
+          "date": "4/26",
+          "day_of_week": "금",
+          "time": "16:00",
+          "merchant": "카페쿠츠",
+          "amount_krw": 5500
+        }
+      ]
+    },
+    {
+      "persona_name": "페르소나 4: 프리미엄 카페 모임형",
+      "usage_concept": "평일 직장 미팅과 주말 친구 모임에서 일행 음료·디저트까지 본인이 결제하는 호스트형 직장인",
+      "previous_month_performance": "800,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/6",
+          "day_of_week": "토",
+          "time": "15:00",
+          "merchant": "엔제리너스 롯데몰광교점",
+          "amount_krw": 20500
+        },
+        {
+          "id": 2,
+          "date": "4/9",
+          "day_of_week": "화",
+          "time": "13:30",
+          "merchant": "폴바셋 광교경기도청점",
+          "amount_krw": 18000
+        },
+        {
+          "id": 3,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "19:00",
+          "merchant": "스타벅스 수원광교점",
+          "amount_krw": 19500
+        },
+        {
+          "id": 4,
+          "date": "4/13",
+          "day_of_week": "토",
+          "time": "14:30",
+          "merchant": "스타벅스 광교갤러리아점",
+          "amount_krw": 19000
+        },
+        {
+          "id": 5,
+          "date": "4/16",
+          "day_of_week": "화",
+          "time": "13:15",
+          "merchant": "투썸플레이스 강남역점",
+          "amount_krw": 16000
+        },
+        {
+          "id": 6,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "19:30",
+          "merchant": "카페메이븐",
+          "amount_krw": 18500
+        },
+        {
+          "id": 7,
+          "date": "4/23",
+          "day_of_week": "화",
+          "time": "14:00",
+          "merchant": "커피빈 신논현점",
+          "amount_krw": 17500
+        },
+        {
+          "id": 8,
+          "date": "4/27",
+          "day_of_week": "일",
+          "time": "15:30",
+          "merchant": "폴바셋 광교경기도청점",
+          "amount_krw": 15500
+        }
+      ]
+    },
+    {
+      "persona_name": "페르소나 5: 주요 프리미엄 체인 순회형",
+      "usage_concept": "특정 브랜드 한 곳에 고정되지 않고 스타벅스·투썸·커피빈·폴바셋을 상황에 따라 골고루 이용하는 사용자",
+      "previous_month_performance": "300,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/1",
+          "day_of_week": "월",
+          "time": "10:00",
+          "merchant": "스타벅스 강남R점",
+          "amount_krw": 8500
+        },
+        {
+          "id": 2,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "14:30",
+          "merchant": "투썸플레이스 강남역점",
+          "amount_krw": 9500
+        },
+        {
+          "id": 3,
+          "date": "4/5",
+          "day_of_week": "금",
+          "time": "13:00",
+          "merchant": "커피빈 신논현점",
+          "amount_krw": 8500
+        },
+        {
+          "id": 4,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "11:30",
+          "merchant": "폴바셋 광화문점",
+          "amount_krw": 9800
+        },
+        {
+          "id": 5,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "15:30",
+          "merchant": "스타벅스 시청역점",
+          "amount_krw": 9000
+        },
+        {
+          "id": 6,
+          "date": "4/10",
+          "day_of_week": "수",
+          "time": "14:00",
+          "merchant": "스타벅스 시청역점",
+          "amount_krw": 8500
+        },
+        {
+          "id": 7,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "13:30",
+          "merchant": "투썸플레이스 홍대점",
+          "amount_krw": 9500
+        },
+        {
+          "id": 8,
+          "date": "4/15",
+          "day_of_week": "월",
+          "time": "11:00",
+          "merchant": "커피빈 강남대로점",
+          "amount_krw": 8800
+        },
+        {
+          "id": 9,
+          "date": "4/17",
+          "day_of_week": "수",
+          "time": "15:30",
+          "merchant": "스타벅스 신세계강남점",
+          "amount_krw": 11500
+        },
+        {
+          "id": 10,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "10:00",
+          "merchant": "투썸플레이스 여의도점",
+          "amount_krw": 9500
+        },
+        {
+          "id": 11,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "14:00",
+          "merchant": "폴바셋 여의도점",
+          "amount_krw": 10500
+        },
+        {
+          "id": 12,
+          "date": "4/22",
+          "day_of_week": "월",
+          "time": "13:00",
+          "merchant": "모카포트 한남점",
+          "amount_krw": 7500
+        },
+        {
+          "id": 13,
+          "date": "4/26",
+          "day_of_week": "금",
+          "time": "14:30",
+          "merchant": "스튜디오카페 가로수길",
+          "amount_krw": 8500
+        }
+      ]
+    },
+    {
+      "persona_name": "페르소나 6: 저가커피 초저가 다빈도형",
+      "usage_concept": "출근길·일상에서 메가커피·컴포즈·빽다방 등 저가 체인을 반복 이용하는 사용자",
+      "previous_month_performance": "300,000원",
+      "transactions": [
+        {
+          "id": 1,
+          "date": "4/1",
+          "day_of_week": "월",
+          "time": "08:30",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 2,
+          "date": "4/2",
+          "day_of_week": "화",
+          "time": "08:30",
+          "merchant": "컴포즈커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 3,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "08:30",
+          "merchant": "컴포즈커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 4,
+          "date": "4/3",
+          "day_of_week": "수",
+          "time": "14:00",
+          "merchant": "빽다방 수원아주대점",
+          "amount_krw": 3000
+        },
+        {
+          "id": 5,
+          "date": "4/4",
+          "day_of_week": "목",
+          "time": "08:35",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 6,
+          "date": "4/5",
+          "day_of_week": "금",
+          "time": "09:00",
+          "merchant": "더벤티 수원아주대점",
+          "amount_krw": 2200
+        },
+        {
+          "id": 7,
+          "date": "4/8",
+          "day_of_week": "월",
+          "time": "08:30",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 8,
+          "date": "4/9",
+          "day_of_week": "화",
+          "time": "14:30",
+          "merchant": "카페메이븐",
+          "amount_krw": 3500
+        },
+        {
+          "id": 9,
+          "date": "4/10",
+          "day_of_week": "수",
+          "time": "08:25",
+          "merchant": "컴포즈커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 10,
+          "date": "4/10",
+          "day_of_week": "수",
+          "time": "14:10",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 11,
+          "date": "4/11",
+          "day_of_week": "목",
+          "time": "13:00",
+          "merchant": "빽다방 수원아주대점",
+          "amount_krw": 3200
+        },
+        {
+          "id": 12,
+          "date": "4/12",
+          "day_of_week": "금",
+          "time": "08:30",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 13,
+          "date": "4/15",
+          "day_of_week": "월",
+          "time": "14:00",
+          "merchant": "카페쿠츠",
+          "amount_krw": 3200
+        },
+        {
+          "id": 14,
+          "date": "4/16",
+          "day_of_week": "화",
+          "time": "08:30",
+          "merchant": "컴포즈커피 수원아주대점",
+          "amount_krw": 2800
+        },
+        {
+          "id": 15,
+          "date": "4/18",
+          "day_of_week": "목",
+          "time": "08:35",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 16,
+          "date": "4/19",
+          "day_of_week": "금",
+          "time": "08:30",
+          "merchant": "더벤티 수원아주대점",
+          "amount_krw": 2200
+        },
+        {
+          "id": 17,
+          "date": "4/22",
+          "day_of_week": "월",
+          "time": "08:30",
+          "merchant": "메가MGC커피 수원아주대점",
+          "amount_krw": 2500
+        },
+        {
+          "id": 18,
+          "date": "4/23",
+          "day_of_week": "화",
+          "time": "14:30",
+          "merchant": "스튜디오카페 망원점",
+          "amount_krw": 3500
+        },
+        {
+          "id": 19,
+          "date": "4/25",
+          "day_of_week": "목",
+          "time": "08:35",
+          "merchant": "빽다방 수원아주대점",
+          "amount_krw": 3000
+        }
+      ]
+    }
+  ]
+}
