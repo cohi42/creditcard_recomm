@@ -5,10 +5,11 @@ card_crawling/data/raw/
 card_crawling/logs/
 structurization/logs/
 cards.db
-cards copy.db
-cafe_v2_보강.db
+cafe_v2.db
+cafe_v3.db
 structurization/enrichment_log.json
 scheduler.md
 추가방안.md
 test_outputs
 notice_enrichment_delta.json
+final_viewer/persona_analysis_outputs

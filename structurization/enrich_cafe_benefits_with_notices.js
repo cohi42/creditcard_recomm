@@ -9,6 +9,7 @@ const DEFAULT_PARSE_RETRY_COUNT = 2;
 const DEFAULT_API_RETRY_COUNT = 5;
 const DEFAULT_REQUEST_DELAY_MS = 500;
 const DEFAULT_CONCURRENCY = 1;
+const DEFAULT_NOTICE_CATEGORY = '\uC720\uC758\uC0AC\uD56D';
 const BASE_BACKOFF_MS = 1000;
 
 const SIMPLE_FIELDS = [
@@ -22,9 +23,9 @@ const SIMPLE_FIELDS = [
 ];
 
 const SYSTEM_PROMPT = `
-너는 신용카드 혜택의 1차 정형화 결과를 유의사항 텍스트로 보강하는 파서다.
-입력으로 (1) 1차 정형화된 결과 JSON과 (2) 해당 카드의 유의사항 텍스트가 주어진다.
-유의사항을 읽고, 1차 결과에서 null인 필드 또는 비어있는 배열에 한해 채워라.
+너는 신용카드 혜택의 1차 정형화 결과를 카드 공통 조건 텍스트로 보강하는 파서다.
+입력으로 (1) 1차 정형화된 결과 JSON과 (2) 해당 카드의 공통 조건 텍스트가 주어진다.
+공통 조건 텍스트를 읽고, 1차 결과에서 누락된 조건을 보강하라.
 
 ## 출력 JSON 스키마
 
@@ -45,7 +46,7 @@ const SYSTEM_PROMPT = `
       ],
       "exclusions": [string],
       "evidence": {
-        "<필드명>": "<유의사항에서 인용한 원문 구절>"
+        "<필드명>": "<공통 조건 텍스트에서 인용한 원문 구절>"
       }
     }
   ]
@@ -53,20 +54,21 @@ const SYSTEM_PROMPT = `
 
 ## 원칙
 
-1. 1차 결과에서 이미 값이 있는 필드는 그대로 출력하라. 수정하지 마라.
-2. 1차 결과에서 null이거나 빈 배열인 필드만 보강 대상이다.
-3. 유의사항에 해당 조건이 명시되어 있지 않다면 보강하지 말고 null/빈 배열로 유지하라. 추론하지 마라.
-4. 새로 채운 필드가 있다면, 그 근거가 된 유의사항 원문 구절을 evidence 객체에 인용하라. 보강하지 않은 필드는 evidence에 넣지 마라.
-5. 금액은 모두 원 단위 정수로 통일하라.
-6. benefit_id는 입력 그대로 유지하라.
-7. 반드시 순수 JSON만 출력하라.
+1. discount_rate, discount_amount, discount_type, frequency_limit, per_transaction_limit, monthly_discount_limit, min_spend 같은 스칼라 필드는 1차 결과가 null일 때만 보강하라. 이미 값이 있으면 그대로 출력하라.
+2. brands, performance_tiers, exclusions는 기존 배열이 비어 있지 않아도, 공통 조건 텍스트에 명시된 추가 항목이 있으면 기존 값을 유지한 채 새 항목을 추가하라.
+3. brands, performance_tiers, exclusions에 이미 같은 의미의 항목이 있으면 중복 추가하지 마라.
+4. 공통 조건 텍스트에 해당 조건이 명시되어 있지 않다면 보강하지 말고 null/빈 배열 또는 기존 배열 그대로 유지하라. 추론하지 마라.
+5. 새로 채운 필드나 새로 추가한 배열 항목이 있다면, 그 근거가 된 공통 조건 텍스트의 원문 구절을 evidence 객체에 인용하라. 보강하지 않은 필드는 evidence에 넣지 마라.
+6. 금액은 모두 원 단위 정수로 통일하라.
+7. benefit_id는 입력 그대로 유지하라.
+8. 반드시 순수 JSON만 출력하라.
 
 ## 예시
 
 입력 1차 결과:
 {"benefits":[{"benefit_id":123,"discount_rate":5,"discount_amount":null,"discount_type":"캐시백","frequency_limit":null,"per_transaction_limit":null,"monthly_discount_limit":null,"min_spend":null,"brands":["스타벅스","투썸플레이스","이디야"],"performance_tiers":[],"exclusions":["모바일 주문"]}]}
 
-입력 유의사항:
+입력 공통 조건 텍스트:
 "전월 이용금액 30만원 이상 시 제공. 백화점 및 대형마트 입점 매장 제외. 통합 월 할인한도: 30~70만원 1만원, 70~150만원 2만원, 150만원 이상 4만원."
 
 출력:
@@ -93,7 +95,7 @@ function parseCardsCsv(rawValue) {
 function parseArgs(argv) {
   const parsed = {
     sourceDbPath: path.resolve(PROJECT_ROOT, 'cards.db'),
-    outputDbPath: path.resolve(PROJECT_ROOT, 'cafe_v2_보강.db'),
+    outputDbPath: path.resolve(PROJECT_ROOT, 'cafe_v2.db'),
     logPath: path.resolve(__dirname, 'enrichment_log.json'),
     debugDir: path.resolve(__dirname, 'enrichment_debug'),
     model: DEFAULT_MODEL,
@@ -102,6 +104,7 @@ function parseArgs(argv) {
     apiRetryCount: DEFAULT_API_RETRY_COUNT,
     requestDelayMs: DEFAULT_REQUEST_DELAY_MS,
     concurrency: DEFAULT_CONCURRENCY,
+    noticeCategory: DEFAULT_NOTICE_CATEGORY,
     overwriteOutput: false,
     resume: false,
   };
@@ -158,6 +161,11 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === '--notice-category' && argv[index + 1]) {
+      parsed.noticeCategory = argv[index + 1];
+      index += 1;
+      continue;
+    }
     if (arg === '--overwrite-output') {
       parsed.overwriteOutput = true;
       continue;
@@ -185,6 +193,9 @@ function parseArgs(argv) {
   if (!Number.isInteger(parsed.concurrency) || parsed.concurrency < 1) {
     throw new Error(`--concurrency must be an integer >= 1 (got: ${parsed.concurrency})`);
   }
+  if (!parsed.noticeCategory || typeof parsed.noticeCategory !== 'string') {
+    throw new Error('--notice-category must be a non-empty string.');
+  }
   if (parsed.overwriteOutput && parsed.resume) {
     throw new Error('--overwrite-output and --resume cannot be used together.');
   }
@@ -202,7 +213,7 @@ function printHelpAndExit() {
 Options:
   --db <path>                Source SQLite DB path (default: ./cards.db)
   --source-db <path>         Same as --db
-  --output-db <path>         Output SQLite DB path (default: ./cafe_v2_보강.db)
+  --output-db <path>         Output SQLite DB path (default: ./cafe_v2.db)
   --log <path>               Enrichment log JSON path (default: ./structurization/enrichment_log.json)
   --debug-dir <path>         Failed parse debug directory (default: ./structurization/enrichment_debug)
   --cards <csv>              Card ids to process, e.g. 10,45,105
@@ -211,6 +222,7 @@ Options:
   --api-retries <n>          API retry count with backoff (default: 5)
   --request-delay-ms <n>     Delay between cards in ms (default: ${DEFAULT_REQUEST_DELAY_MS})
   --concurrency <n>          Parallel card workers (default: ${DEFAULT_CONCURRENCY})
+  --notice-category <name>   Category to use as card-level common notes (default: 유의사항)
   --overwrite-output         Replace output DB by copying source DB before processing
   --resume                   Keep existing output DB and continue processing selected cards
   -h, --help                 Show this help
@@ -638,7 +650,13 @@ async function getNormalizedEnrichmentWithRetries({
   throw lastError;
 }
 
-function ensureModelInputViews(db) {
+function toSqlStringLiteral(value) {
+  return `'${String(value).replace(/'/g, "''")}'`;
+}
+
+function ensureModelInputViews(db, noticeCategory) {
+  const noticeCategorySql = toSqlStringLiteral(noticeCategory);
+
   db.exec(`
     CREATE INDEX IF NOT EXISTS idx_benefits_card_category ON benefits (card_id, category);
 
@@ -654,7 +672,7 @@ function ensureModelInputViews(db) {
         b.benefit_id,
         TRIM(b.raw_info) AS note_text
       FROM benefits AS b
-      WHERE b.category = '유의사항'
+      WHERE b.category = ${noticeCategorySql}
         AND COALESCE(TRIM(b.raw_info), '') <> ''
     ),
     note_rollup AS (
@@ -685,10 +703,10 @@ function ensureModelInputViews(db) {
       n.notice_text AS common_notes,
       COALESCE(n.notice_count, 0) AS common_note_count,
       '[혜택 원문 시작]\n' || COALESCE(b.raw_info, '') || '\n[혜택 원문 끝]' AS effective_info,
-      '[공통 유의사항 시작]\n' || COALESCE(n.notice_text, '') || '\n[공통 유의사항 끝]' AS common_notes_block
+      '[공통 조건 텍스트 시작]\n' || COALESCE(n.notice_text, '') || '\n[공통 조건 텍스트 끝]' AS common_notes_block
     FROM benefits AS b
     LEFT JOIN v_card_notice AS n ON n.card_id = b.card_id
-    WHERE b.category <> '유의사항';
+    WHERE b.category <> ${noticeCategorySql};
 
     CREATE VIEW v_benefits_for_recommendation AS
     SELECT
@@ -877,14 +895,14 @@ function serializeCafeBenefitsForCard(statements, cardId) {
 
 function buildModelInput(primaryResult, noticeText) {
   return [
-    '다음 1차 정형화 결과 JSON과 유의사항 텍스트를 분석해 JSON만 출력하라.',
+    '다음 1차 정형화 결과 JSON과 공통 조건 텍스트를 분석해 JSON만 출력하라.',
     '',
     '[1차 정형화 결과 JSON]',
     JSON.stringify(primaryResult, null, 2),
     '',
-    '[유의사항 텍스트 시작]',
+    '[공통 조건 텍스트 시작]',
     noticeText,
-    '[유의사항 텍스트 끝]',
+    '[공통 조건 텍스트 끝]',
   ].join('\n');
 }
 
@@ -1239,7 +1257,7 @@ async function main() {
   try {
     db = new DatabaseSync(args.outputDbPath);
     db.exec('PRAGMA foreign_keys = ON;');
-    ensureModelInputViews(db);
+    ensureModelInputViews(db, args.noticeCategory);
 
     const statements = buildDbStatements(db);
     const allCardIds = getTargetCardIds(statements, args.cardIds);

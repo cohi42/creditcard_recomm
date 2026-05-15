@@ -3,7 +3,7 @@ const path = require('node:path');
 const { DatabaseSync } = require('node:sqlite');
 
 const CAFE_CATEGORY = '\uCE74\uD398';
-const DEFAULT_DB_FILE = 'cafe_v2_보강.db';
+const DEFAULT_DB_FILE = 'cafe_v3.db';
 const DEFAULT_DB_PATH = path.resolve(__dirname, DEFAULT_DB_FILE);
 const DEFAULT_CARD_IDS = [10, 105, 161, 208, 231, 263, 574];
 const DEFAULT_MODEL = 'gemini-2.5-flash';

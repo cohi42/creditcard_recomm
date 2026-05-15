@@ -1,0 +1,2804 @@
+[
+  {
+    "card_id": 10,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 14,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 15,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 37,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 39,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 42,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 45,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 49,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 50,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 53,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 56,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 57,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 60,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 65,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 67,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 68,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 72,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 74,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 75,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 76,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 77,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 81,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 84,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 85,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 86,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 88,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 94,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 105,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 124,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 147,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 161,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 163,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 164,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 165,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 168,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 178,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 179,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 181,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 185,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 208,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 231,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 232,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 234,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 238,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 239,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 240,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 241,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 242,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 243,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 246,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 250,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 253,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 263,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 266,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 270,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 273,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 274,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 282,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 287,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 296,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 309,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 311,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 318,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 320,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 322,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 328,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 331,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 332,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 339,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 342,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_1655": {
+        "performance_tiers": [
+          {
+            "min_spend": 200000,
+            "max_spend": 300000,
+            "monthly_limit": 10000
+          },
+          {
+            "min_spend": 300000,
+            "max_spend": 500000,
+            "monthly_limit": 20000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": 1000000,
+            "monthly_limit": 30000
+          },
+          {
+            "min_spend": 1000000,
+            "max_spend": null,
+            "monthly_limit": 50000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_1655": {
+        "performance_tiers": "전월실적 20만원 이상: 월 통합 1만원 할인한도\n- 전월실적 30만원 이상: 월 통합 2만원 할인한도\n- 전월실적 50만원 이상: 월 통합 3만원 할인한도\n- 전월실적 100만원 이상: 월 통합 5만원 할인한도"
+      }
+    }
+  },
+  {
+    "card_id": 347,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_1694": {
+        "performance_tiers": [
+          {
+            "min_spend": 200000,
+            "max_spend": 300000,
+            "monthly_limit": 10000
+          },
+          {
+            "min_spend": 300000,
+            "max_spend": null,
+            "monthly_limit": 20000
+          }
+        ]
+      },
+      "benefit_id_16586": {
+        "performance_tiers": [
+          {
+            "min_spend": 200000,
+            "max_spend": 300000,
+            "monthly_limit": 10000
+          },
+          {
+            "min_spend": 300000,
+            "max_spend": null,
+            "monthly_limit": 20000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_1694": {
+        "performance_tiers": "월간 통합할인한도 - 전월실적 20만원 이상~30만원 미만: 최대 1만원 할인한도 - 전월실적 30만원 이상: 최대 2만원 할인한도"
+      },
+      "benefit_id_16586": {
+        "performance_tiers": "월간 통합할인한도 - 전월실적 20만원 이상~30만원 미만: 최대 1만원 할인한도 - 전월실적 30만원 이상: 최대 2만원 할인한도"
+      }
+    }
+  },
+  {
+    "card_id": 349,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_1718": {
+        "performance_tiers": [
+          {
+            "min_spend": 200000,
+            "max_spend": 299999,
+            "monthly_limit": 10000
+          },
+          {
+            "min_spend": 300000,
+            "max_spend": 499999,
+            "monthly_limit": 20000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": 999999,
+            "monthly_limit": 30000
+          },
+          {
+            "min_spend": 1000000,
+            "max_spend": null,
+            "monthly_limit": 50000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_1718": {
+        "performance_tiers": "월간 통합할인한도\n- 전월 이용실적 20만원 이상: 1만원\n- 전월 이용실적 30만원 이상: 2만원\n- 전월 이용실적 50만원 이상: 3만원\n- 전월 이용실적 100만원 이상: 5만원"
+      }
+    }
+  },
+  {
+    "card_id": 354,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 355,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_1757": {
+        "exclusions": [
+          "대학(대학원)등록금",
+          "선불카드 구입(충전)금액",
+          "정부지원금",
+          "아파트 관리비",
+          "지방세",
+          "이용금액 건당 1천원 미만 건",
+          "포인트리 충전금액",
+          "취소금액",
+          "각종 수수료 및 이자",
+          "연체료",
+          "생활할인 서비스로 할인 받은 전표"
+        ]
+      },
+      "benefit_id_16587": {
+        "exclusions": [
+          "대학(대학원)등록금",
+          "선불카드 구입(충전)금액",
+          "정부지원금",
+          "아파트 관리비",
+          "지방세",
+          "이용금액 건당 1천원 미만 건",
+          "포인트리 충전금액",
+          "취소금액",
+          "각종 수수료 및 이자",
+          "연체료",
+          "생활할인 서비스로 할인 받은 전표"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_1757": {
+        "exclusions": "H.Point 적립 제외대상: 대학(대학원)등록금, 상품권 및 선불카드 구입(충전)금액, 정부지원금, 아파트 관리비, 지방세, 이용금액 건당 1천원 미만 건, 포인트리 충전금액, 취소금액, 각종 수수료 및 이자, 연체료, 생활할인 서비스로 할인 받은 전표"
+      },
+      "benefit_id_16587": {
+        "exclusions": "H.Point 적립 제외대상: 대학(대학원)등록금, 상품권 및 선불카드 구입(충전)금액, 정부지원금, 아파트 관리비, 지방세, 이용금액 건당 1천원 미만 건, 포인트리 충전금액, 취소금액, 각종 수수료 및 이자, 연체료, 생활할인 서비스로 할인 받은 전표"
+      }
+    }
+  },
+  {
+    "card_id": 357,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 359,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 365,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_1794": {
+        "min_spend": 10000,
+        "performance_tiers": [
+          {
+            "min_spend": 200000,
+            "max_spend": 500000,
+            "monthly_limit": 3000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": null,
+            "monthly_limit": 7000
+          }
+        ],
+        "exclusions": [
+          "백화점 및 할인(아울렛)점 입점매장",
+          "상품권 구매(기프트카드 구입, 충전 포함)"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_1794": {
+        "min_spend": "이용건당 2만원 이상 시 할인 제공(커피/영화는 1만원 이상 시 할인 제공)",
+        "performance_tiers": "통합 월할인한도 - 전월실적 20만원 이상~50만원 미만: 통합 월 3천원 할인한도 - 전월실적 50만원 이상: 통합 월 7천원 할인한도",
+        "exclusions": "백화점 및 할인(아울렛)점 입점매장은 제외될 수 있으며, 상품권 구매(기프트카드 구입, 충전 포함)는 제외됩니다."
+      }
+    }
+  },
+  {
+    "card_id": 369,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 372,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 392,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 405,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 440,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_2069": {
+        "performance_tiers": [
+          {
+            "min_spend": 300000,
+            "max_spend": 500000,
+            "monthly_limit": 5000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": null,
+            "monthly_limit": 10000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_2069": {
+        "performance_tiers": "전월이용금액 30만원 이상 시 월간 통합할인한도 5천원\n- 전월이용금액 50만원 이상 시 월간 통합할인한도 1만원"
+      }
+    }
+  },
+  {
+    "card_id": 441,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_2079": {
+        "performance_tiers": [
+          {
+            "min_spend": 300000,
+            "max_spend": 500000,
+            "monthly_limit": 5000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": null,
+            "monthly_limit": 10000
+          }
+        ],
+        "exclusions": [
+          "금융우대서비스",
+          "놀이공원 서비스"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_2079": {
+        "performance_tiers": "- 전월이용금액 30만원 이상 시 월간 통합할인한도 5천원\n- 전월이용금액 50만원 이상 시 월간 통합할인한도 1만원",
+        "exclusions": "통합할인한도는 금융우대서비스, 놀이공원 서비스는 제외 됩니다."
+      }
+    }
+  },
+  {
+    "card_id": 443,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 447,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_2122": {
+        "exclusions": [
+          "무이자 할부",
+          "해당 카드로 할인 받은 매출금액 전체",
+          "국세",
+          "지방세",
+          "공과금(인터넷/모바일앱을 통한 공과금 납부금액 포함)",
+          "국민연금/고용보험료/산재보험료/건강보험료 납부금액",
+          "수도/전기요금",
+          "아파트관리비",
+          "도시가스",
+          "대학등록금",
+          "초·중·고 학교납입금"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_2122": {
+        "exclusions": "무이자 할부, 해당 카드로 할인 받은 매출금액 전체, 국세, 지방세, 공과금(인터넷/모바일앱을 통한 공과금 납부금액 포함), 국민연금/고용보험료/산재보험료/건강보험료 납부금액, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전금액, 수도/전기요금, 아파트관리비, 도시가스, 대학등록금, 초·중·고 학교납입금 은 적립 제외됩니다."
+      }
+    }
+  },
+  {
+    "card_id": 448,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_2130": {
+        "exclusions": [
+          "무이자 할부",
+          "해당 카드로 할인 받은 매출금액 전체",
+          "국세",
+          "지방세",
+          "공과금(인터넷/모바일앱을 통한 공과금 납부금액 포함)",
+          "국민연금/고용보험료/산재보험료/건강보험료 납부금액",
+          "기프트카드 구매",
+          "선불카드 및 선불전자지급수단(하나머니 등) 충전금액",
+          "수도/전기요금",
+          "아파트관리비",
+          "도시가스",
+          "대학등록금",
+          "초·중·고 학교납입금"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_2130": {
+        "exclusions": "무이자 할부, 해당 카드로 할인 받은 매출금액 전체, 국세, 지방세, 공과금(인터넷/모바일앱을 통한 공과금 납부금액 포함), 국민연금/고용보험료/산재보험료/건강보험료 납부금액, 상품권 및 기프트카드 구매, 선불카드 및 선불전자지급수단(하나머니 등) 충전금액, 수도/전기요금, 아파트관리비, 도시가스, 대학등록금, 초·중·고 학교납입금 은 적립 제외됩니다."
+      }
+    }
+  },
+  {
+    "card_id": 458,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 470,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 472,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 473,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 475,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 481,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 482,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 483,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 485,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 487,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 506,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 528,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 542,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 550,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 565,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 566,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 567,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 574,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 576,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 586,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 593,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 594,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 597,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 598,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 599,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 601,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 602,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_2948": {
+        "exclusions": [
+          "장기카드대출(카드론)",
+          "단기카드대출(현금서비스)",
+          "연회비",
+          "제수수료",
+          "이자"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_2948": {
+        "exclusions": "누적 이용금액 합산 제외 : 장기카드대출(카드론), 단기카드대출(현금서비스), 연회비, 제수수료, 이자"
+      }
+    }
+  },
+  {
+    "card_id": 603,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 612,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 614,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_3017": {
+        "brands": [
+          "텐바이텐"
+        ]
+      },
+      "benefit_id_16589": {
+        "brands": [
+          "텐바이텐"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_3017": {
+        "brands": "텐바이텐 2~4천원 환급할인, 직영 홈페이지(www. 10x10.co.kr) 및 직영 매장(대학로점) 이용분만 할인 제공"
+      },
+      "benefit_id_16589": {
+        "brands": "텐바이텐 2~4천원 환급할인, 직영 홈페이지(www. 10x10.co.kr) 및 직영 매장(대학로점) 이용분만 할인 제공"
+      }
+    }
+  },
+  {
+    "card_id": 616,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 618,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 622,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 629,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 631,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 644,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 652,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 660,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 666,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 667,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 668,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 674,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 677,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_3318": {
+        "exclusions": [
+          "온라인 매장"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_3318": {
+        "exclusions": "오프라인 매장에 한함"
+      }
+    }
+  },
+  {
+    "card_id": 689,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 692,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 693,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 699,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 714,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 719,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 720,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 723,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 725,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 731,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 732,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 735,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 737,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 744,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 745,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 755,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 758,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 762,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 767,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 772,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 773,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 778,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 795,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 796,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 807,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 810,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 811,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 815,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 816,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 818,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 820,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 821,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 822,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 823,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 837,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 838,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 841,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 874,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 879,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_4363": {
+        "discount_rate": 7,
+        "brands": [
+          "자연드림"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_4363": {
+        "discount_rate": "자연드림 이용금액 7% 청구할인",
+        "brands": "자연드림 이용금액 7% 청구할인"
+      }
+    }
+  },
+  {
+    "card_id": 897,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 916,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 931,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 934,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 947,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 951,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 952,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 974,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_4815": {
+        "discount_rate": 10,
+        "brands": [
+          "우편",
+          "택배",
+          "EMS",
+          "우표",
+          "우체국쇼핑몰"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_4815": {
+        "discount_rate": "- 우편, 택배, EMS, 우표, 우체국쇼핑몰 10% 청구할인",
+        "brands": "- 우편, 택배, EMS, 우표, 우체국쇼핑몰 10% 청구할인"
+      }
+    }
+  },
+  {
+    "card_id": 976,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 984,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 985,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 986,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 994,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 995,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1018,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1019,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1037,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1041,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1050,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_5266": {
+        "exclusions": [
+          "해당 카드 서비스로 포인트 적립 및 할인받은 매출액 전체",
+          "연회비",
+          "취소금액",
+          "각종수수료",
+          "이자납부액",
+          "기프트 카드 구입 및 충전금액",
+          "각종상품권 구입금액",
+          "대학/대학원등록금",
+          "각종 공과금 및 지방세/국세 등 세금납부액"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_5266": {
+        "exclusions": "전월 이용실적 제외 대상: 해당 카드 서비스로 포인트 적립 및 할인받은 매출액 전체, 연회비, 취소금액, 각종수수료, 이자납부액, 기프트 카드 구입 및 충전금액, 각종상품권 구입금액, 대학/대학원등록금, 각종 공과금 및 지방세/국세 등 세금납부액, 대중교통이용금액"
+      }
+    }
+  },
+  {
+    "card_id": 1071,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1072,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1074,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1082,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1157,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1172,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1178,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1189,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1203,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1205,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1214,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1216,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1220,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1221,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1247,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1248,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1249,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1251,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1253,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1255,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1259,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1260,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1262,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1278,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1284,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1287,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1288,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1292,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1314,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1324,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1343,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1381,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1398,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1414,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1416,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1418,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1447,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1461,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1463,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1469,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1487,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1490,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1496,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1501,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1517,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1520,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1521,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1524,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1527,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1529,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1555,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1561,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1563,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1565,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1566,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1573,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1586,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1589,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1591,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1592,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1599,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1610,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1614,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1615,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1616,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1617,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1618,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1619,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1675,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1676,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1696,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1698,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1700,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1701,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1703,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1707,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1745,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1746,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1748,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1751,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1752,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1791,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1796,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1800,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1807,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1813,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1816,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1818,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1828,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1829,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1833,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1846,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1848,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1851,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1852,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1853,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1867,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1868,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1869,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1871,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1873,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1874,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1875,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1876,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1877,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1878,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1879,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1880,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1881,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1882,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1887,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1890,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1891,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1892,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1894,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1896,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1897,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1898,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1900,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1901,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1903,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1904,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1905,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1908,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1909,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1913,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1964,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_11346": {
+        "frequency_limit": "무제한"
+      }
+    },
+    "evidence": {
+      "benefit_id_11346": {
+        "frequency_limit": "-업종별 한도, 업종별 캐시백횟수 제한 없음"
+      }
+    }
+  },
+  {
+    "card_id": 1966,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1968,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1969,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1972,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1975,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1977,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 1985,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1989,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1990,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1994,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1995,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1997,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 1999,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2006,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2007,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2016,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2024,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2040,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2047,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_11781": {
+        "performance_tiers": [
+          {
+            "min_spend": 300000,
+            "max_spend": 500000,
+            "monthly_limit": 5000
+          },
+          {
+            "min_spend": 500000,
+            "max_spend": null,
+            "monthly_limit": 10000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_11781": {
+        "performance_tiers": "- 전월이용금액 30만원 이상 시 월간 통합할인한도 5천원\n- 전월이용금액 50만원 이상 시 월간 통합할인한도 1만원"
+      }
+    }
+  },
+  {
+    "card_id": 2058,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2070,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2073,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_11941": {
+        "performance_tiers": [
+          {
+            "min_spend": 300000,
+            "max_spend": null,
+            "monthly_limit": null
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_11941": {
+        "performance_tiers": "전월사용실적 30만원 이상시 적용"
+      }
+    }
+  },
+  {
+    "card_id": 2080,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2083,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2084,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_12015": {
+        "exclusions": [
+          "티머니와 캐시비 교통카드 이용금액",
+          "승인취소 및 매입취소"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_12015": {
+        "exclusions": "티머니와 캐시비 교통카드 이용금액은 전월 실적에서 제외됩니다.\n승인취소 및 매입취소는 전월 이용실적에서 제외되며"
+      }
+    }
+  },
+  {
+    "card_id": 2094,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_12068": {
+        "min_spend": 150000
+      }
+    },
+    "evidence": {
+      "benefit_id_12068": {
+        "min_spend": "전월실적 15만원 미만: 통합할인한도 0원"
+      }
+    }
+  },
+  {
+    "card_id": 2148,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2151,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2156,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2174,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2187,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2211,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2212,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2215,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2216,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2218,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2227,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_12919": {
+        "brands": [
+          "우편요금",
+          "인터넷우체국",
+          "우체국쇼핑",
+          "EMS"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_12919": {
+        "brands": "우편요금, 인터넷우체국, 우체국쇼핑, EMS 5% 캐시백"
+      }
+    }
+  },
+  {
+    "card_id": 2228,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2232,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2251,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2262,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2280,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2281,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2282,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2290,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2312,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2321,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2333,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2339,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2342,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2351,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2354,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2356,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2370,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2386,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2401,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2403,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2409,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2416,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2422,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2423,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2428,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2447,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2448,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2460,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2463,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2466,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2469,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2493,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2501,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2504,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2505,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2506,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2507,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2509,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2510,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2523,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2525,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2527,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2528,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2530,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2539,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_14482": {
+        "exclusions": [
+          "건강보험/국민연금/고용보험/산재보험 및 장애인 고용부담금",
+          "국세/지방세/공과금/납부건",
+          "아파트 관리비",
+          "부동산 임대료 납부건",
+          "유치원 납입금",
+          "초/중/고등학교 학교납입금",
+          "대학 등록금 납부건",
+          "대중교통",
+          "택시 이용금액"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_14482": {
+        "exclusions": "전월 이용금액 제외 대상: 건강보험/국민연금/고용보험/산재보험 및 장애인 고용부담금, 국세/지방세/공과금/납부건, 아파트 관리비, 부동산 임대료 납부건, 유치원 납입금, 초/중/고등학교 학교납입금, 대학 등록금 납부건, 대중교통, 택시 이용금액, 기프트/선불카드(포인트, 사이버머니 등 전자지급수단 포함) 구매 및 충전, 상품권 구매건"
+      }
+    }
+  },
+  {
+    "card_id": 2543,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2544,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2545,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2546,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2547,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2550,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2557,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2558,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2560,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2562,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2564,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2565,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2567,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2568,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2570,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2583,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_14695": {
+        "performance_tiers": [
+          {
+            "min_spend": 400000,
+            "max_spend": 800000,
+            "monthly_limit": 5000
+          },
+          {
+            "min_spend": 800000,
+            "max_spend": null,
+            "monthly_limit": 10000
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_14695": {
+        "performance_tiers": "전월 국내가맹점 이용실적 월 할인한도: 40만원 이상 ~ 80만원 미만 5,000원, 80만원 이상 10,000원"
+      }
+    }
+  },
+  {
+    "card_id": 2588,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2601,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2604,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2610,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2617,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2621,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2622,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2623,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2625,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2631,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2637,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2641,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2651,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2654,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2657,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2674,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2675,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2680,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2681,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2682,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2686,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2687,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2688,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2691,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2695,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2697,
+    "status": "unchanged",
+    "reason": "no_fields_filled"
+  },
+  {
+    "card_id": 2702,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2771,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2772,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2773,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2774,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2783,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2808,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2809,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2810,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2838,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2840,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2841,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2850,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2860,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2869,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2871,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2873,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2877,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2891,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2892,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_16260": {
+        "brands": [
+          "사진관",
+          "볼링장",
+          "테니스장",
+          "스키장"
+        ]
+      }
+    },
+    "evidence": {
+      "benefit_id_16260": {
+        "brands": "* 놀이 영역 : 사진관, 볼링장, 테니스장, 스키장 업종"
+      }
+    }
+  },
+  {
+    "card_id": 2893,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2894,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2897,
+    "status": "enriched",
+    "filled": {
+      "benefit_id_16287": {
+        "min_spend": 30000
+      }
+    },
+    "evidence": {
+      "benefit_id_16287": {
+        "min_spend": "당월 누적 이용금액 3만원당 스타벅스 별 리워드 1개 적립"
+      }
+    }
+  },
+  {
+    "card_id": 2905,
+    "status": "skipped",
+    "reason": "no_notice"
+  },
+  {
+    "card_id": 2953,
+    "status": "skipped",
+    "reason": "no_notice"
+  }
+]
