@@ -94,8 +94,8 @@ function parseCardsCsv(rawValue) {
 
 function parseArgs(argv) {
   const parsed = {
-    sourceDbPath: path.resolve(PROJECT_ROOT, 'cards.db'),
-    outputDbPath: path.resolve(PROJECT_ROOT, 'cafe_v2.db'),
+    sourceDbPath: path.resolve(PROJECT_ROOT, 'db', 'cards.db'),
+    outputDbPath: path.resolve(PROJECT_ROOT, 'db', 'cafe_v2.db'),
     logPath: path.resolve(__dirname, 'enrichment_log.json'),
     debugDir: path.resolve(__dirname, 'enrichment_debug'),
     model: DEFAULT_MODEL,
@@ -211,9 +211,9 @@ function printHelpAndExit() {
   node structurization/enrich_cafe_benefits_with_notices.js [options]
 
 Options:
-  --db <path>                Source SQLite DB path (default: ./cards.db)
+  --db <path>                Source SQLite DB path (default: ./db/cards.db)
   --source-db <path>         Same as --db
-  --output-db <path>         Output SQLite DB path (default: ./cafe_v2.db)
+  --output-db <path>         Output SQLite DB path (default: ./db/cafe_v2.db)
   --log <path>               Enrichment log JSON path (default: ./structurization/enrichment_log.json)
   --debug-dir <path>         Failed parse debug directory (default: ./structurization/enrichment_debug)
   --cards <csv>              Card ids to process, e.g. 10,45,105

@@ -1,6 +1,9 @@
 import sqlite3
+from pathlib import Path
 
-conn = sqlite3.connect("cards.db")
+DB_PATH = Path(__file__).resolve().parents[1] / "db" / "cards.db"
+
+conn = sqlite3.connect(DB_PATH)
 conn.row_factory = sqlite3.Row
 
 # 1) view가 존재하는지 확인
@@ -12,7 +15,7 @@ for v in views:
     print(f"  - {v['name']}")
 
 # 2) 평가 대상 카드 7장에 대해 혜택 + 유의사항이 같이 나오는지 확인
-# sampled_cafe_cate.md의 카드 ID들
+# docs/sampled_cafe_cate.md의 카드 ID들
 card_ids = [10, 45, 74, 105, 161, 208, 231, 263, 405, 574]
 
 print("\n=== v_benefits_for_recommendation 확인 ===")

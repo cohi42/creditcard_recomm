@@ -1,6 +1,9 @@
 import sqlite3
+from pathlib import Path
 
-conn = sqlite3.connect('cards.db')
+DB_PATH = Path(__file__).resolve().parents[1] / "db" / "cards.db"
+
+conn = sqlite3.connect(DB_PATH)
 cur = conn.execute("""
 SELECT b.card_id, c.card_name, c.card_company, b.raw_info, b.common_notes
 FROM v_benefits_for_recommendation b

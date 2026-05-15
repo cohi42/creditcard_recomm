@@ -2,9 +2,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { DatabaseSync } = require('node:sqlite');
 
+const PROJECT_ROOT = path.resolve(__dirname, '..');
 const CAFE_CATEGORY = '\uCE74\uD398';
 const DEFAULT_DB_FILE = 'cafe_v3.db';
-const DEFAULT_DB_PATH = path.resolve(__dirname, DEFAULT_DB_FILE);
+const DEFAULT_DB_PATH = path.resolve(PROJECT_ROOT, 'db', DEFAULT_DB_FILE);
 const DEFAULT_CARD_IDS = [10, 105, 161, 208, 231, 263, 574];
 const DEFAULT_MODEL = 'gemini-2.5-flash';
 const DEFAULT_YEAR = 2026;
@@ -37,7 +38,7 @@ function parseArgs(argv) {
   const parsed = {
     dbPath: DEFAULT_DB_PATH,
     inputPath: path.resolve(__dirname, 'evaluation_input.json'),
-    outputDir: path.resolve(__dirname, 'test_outputs', 'test_simulation'),
+    outputDir: path.resolve(PROJECT_ROOT, 'test_outputs', 'test_simulation'),
     outputXlsx: null,
     outputLog: null,
     outputSummaryJson: null,
@@ -156,12 +157,12 @@ function parseArgs(argv) {
 
 function printHelpAndExit() {
   console.log(`Usage:
-  node recommendation_testing_pipeline.js [options]
+  node evaluation/recommendation_testing_pipeline.js [options]
 
 Options:
-  --db <path>                 SQLite DB path (default: ./${DEFAULT_DB_FILE})
-  --input <path>              evaluation_input.json path
-  --output-dir <path>         output directory
+  --db <path>                 SQLite DB path (default: ./db/${DEFAULT_DB_FILE})
+  --input <path>              evaluation_input.json path (default: ./evaluation/evaluation_input.json)
+  --output-dir <path>         output directory (default: ./test_outputs/test_simulation)
   --output-xlsx <path>        output XLSX path
   --output-log <path>         output JSONL log path
   --output-summary <path>     output summary JSON path
@@ -1368,7 +1369,7 @@ async function runSimulation(args) {
     throw new Error(`Input JSON not found: ${args.inputPath}`);
   }
 
-  loadDotEnv(path.resolve(__dirname, '.env'));
+  loadDotEnv(path.resolve(PROJECT_ROOT, '.env'));
   const apiKey = process.env.GEMINI_API_KEY;
   if (!args.dryRun && !apiKey) {
     throw new Error('Missing GEMINI_API_KEY environment variable.');

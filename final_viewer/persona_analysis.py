@@ -3,7 +3,7 @@
 Analyze cafe card benefits and derive persona candidates.
 
 The script is intentionally deterministic and local-only:
-- reads cafe_v3.db from the project root by default
+- reads db/cafe_v3.db from the project root by default
 - analyzes all structured cafe benefits
 - writes frequency tables, a recommendation matrix, and a Markdown report
 
@@ -113,6 +113,7 @@ class Benefit:
 class Tx:
     brand: str
     amount: int
+    context_flags: frozenset[str] = frozenset()
 
 
 @dataclass(frozen=True)
@@ -123,15 +124,17 @@ class PersonaTemplate:
     brand_weights: tuple[tuple[str, int], ...]
     monthly_transactions: int
     avg_ticket: int
+    transaction_context: tuple[str, ...] = ()
 
 
 def default_db_path() -> Path:
     project_root = Path(__file__).resolve().parents[1]
-    exact = project_root / "cafe_v3.db"
+    db_dir = project_root / "db"
+    exact = db_dir / "cafe_v3.db"
     if exact.exists():
         return exact
 
-    candidates = sorted(project_root.glob("cafe_v*.db"), key=lambda path: path.stat().st_mtime, reverse=True)
+    candidates = sorted(db_dir.glob("cafe_v*.db"), key=lambda path: path.stat().st_mtime, reverse=True)
     if candidates:
         return candidates[0]
 
@@ -160,14 +163,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--min-margin",
         type=int,
-        default=2000,
-        help="Drop candidate personas whose Top1-Top2 discount margin is below this amount",
+        default=0,
+        help="Optional Top1-Top2 discount margin floor. Defaults to 0 because absolute discount is the primary visibility signal.",
     )
     parser.add_argument(
         "--min-margin-rate",
         type=float,
-        default=2.0,
-        help="Drop candidate personas whose Top1-Top2 margin is below this percent of cafe spend",
+        default=0.0,
+        help="Optional Top1-Top2 margin rate floor. Defaults to 0 because the margin is only a secondary signal.",
     )
     parser.add_argument(
         "--min-effective-rate",
@@ -635,8 +638,46 @@ def matches_brand(benefit: Benefit, brand: str) -> bool:
     return brand in brands
 
 
+TENANT_STORE_CONTEXT = "tenant_store"
+TENANT_STORE_EXCLUSION_KEYWORDS = (
+    "입점",
+    "백화점",
+    "마트",
+    "대형할인점",
+    "할인점",
+    "쇼핑몰",
+    "아울렛",
+    "면세점",
+    "공항",
+    "호텔",
+    "리조트",
+    "역사",
+    "휴게소",
+    "미군부대",
+    "임대매장",
+    "대형시설",
+)
+
+
+def has_tenant_store_exclusion(benefit: Benefit) -> bool:
+    compact_exclusions = [re.sub(r"\s+", "", exclusion) for exclusion in benefit.exclusions]
+    return any(
+        keyword in exclusion
+        for exclusion in compact_exclusions
+        for keyword in TENANT_STORE_EXCLUSION_KEYWORDS
+    )
+
+
+def matches_transaction_context(benefit: Benefit, tx: Tx) -> bool:
+    if TENANT_STORE_CONTEXT in tx.context_flags and has_tenant_store_exclusion(benefit):
+        return False
+    return True
+
+
 def raw_discount_for_tx(benefit: Benefit, tx: Tx, previous_month_spend: int) -> int:
     if not matches_brand(benefit, tx.brand):
+        return 0
+    if not matches_transaction_context(benefit, tx):
         return 0
     if not is_performance_eligible(benefit, previous_month_spend):
         return 0
@@ -723,10 +764,11 @@ def expanded_transactions(template: PersonaTemplate) -> list[Tx]:
 
     amount_multipliers = [0.85, 1.0, 1.15, 0.95, 1.25]
     transactions: list[Tx] = []
+    context_flags = frozenset(template.transaction_context)
     for index in range(template.monthly_transactions):
         brand = weighted[index % len(weighted)]
         amount = int(round(template.avg_ticket * amount_multipliers[index % len(amount_multipliers)] / 100)) * 100
-        transactions.append(Tx(brand=brand, amount=max(100, amount)))
+        transactions.append(Tx(brand=brand, amount=max(100, amount), context_flags=context_flags))
     return transactions
 
 
@@ -798,6 +840,14 @@ def persona_templates() -> list[PersonaTemplate]:
             avg_ticket=4500,
         ),
         PersonaTemplate(
+            key="generic_frequent_light",
+            label="카페 업종 반복 소액형",
+            description="브랜드를 특정하지 않고 가까운 카페를 월 15회 정도 반복 이용",
+            brand_weights=((GENERIC_CAFE, 1),),
+            monthly_transactions=15,
+            avg_ticket=4500,
+        ),
+        PersonaTemplate(
             key="starbucks_light",
             label="스타벅스 가끔형",
             description="스타벅스 월 6회, 평균 6천원대",
@@ -838,12 +888,43 @@ def persona_templates() -> list[PersonaTemplate]:
             avg_ticket=3500,
         ),
         PersonaTemplate(
+            key="ultra_budget_coffee",
+            label="저가커피 초저가 다빈도형",
+            description="메가커피/컴포즈/빽다방/더벤티처럼 2,500-3,000원대 저가커피를 반복 이용",
+            brand_weights=(("메가커피", 3), ("컴포즈커피", 3), ("빽다방", 2), ("더벤티", 1)),
+            monthly_transactions=18,
+            avg_ticket=2800,
+        ),
+        PersonaTemplate(
             key="high_ticket_social",
             label="고액 결제 모임형",
             description="카페에서 한 번에 1.5만원 이상 결제하는 모임/업무형",
             brand_weights=(("스타벅스", 2), ("투썸플레이스", 2), ("커피빈", 1), (GENERIC_CAFE, 1)),
             monthly_transactions=6,
             avg_ticket=18000,
+        ),
+        PersonaTemplate(
+            key="premium_chain_group",
+            label="프리미엄 체인 단체결제형",
+            description="스타벅스/투썸/커피빈/폴바셋에서 모임 비용을 한 번에 결제하는 고액 티켓형",
+            brand_weights=(("스타벅스", 2), ("투썸플레이스", 2), ("커피빈", 1), ("폴바셋", 1)),
+            monthly_transactions=8,
+            avg_ticket=45000,
+        ),
+        PersonaTemplate(
+            key="department_store_social",
+            label="백화점 카페 모임형",
+            description="백화점/쇼핑몰 입점 카페에서 지인 모임을 주로 하는 고액 결제형",
+            brand_weights=(
+                ("스타벅스", 2),
+                ("폴바셋", 2),
+                ("투썸플레이스", 1),
+                ("커피빈", 1),
+                (GENERIC_CAFE, 1),
+            ),
+            monthly_transactions=8,
+            avg_ticket=16000,
+            transaction_context=(TENANT_STORE_CONTEXT,),
         ),
         PersonaTemplate(
             key="ediya_local",
@@ -910,7 +991,7 @@ def derive_persona_candidates(
                 ranked.append({**identity, "estimated_discount": score})
 
             ranked.sort(key=lambda row: (-row["estimated_discount"], row["card_id"]))
-            top = ranked[:3]
+            top = ranked[:5]
             if not top:
                 continue
 
@@ -927,9 +1008,9 @@ def derive_persona_candidates(
             margin_ratio = safe_ratio(margin, top2_score)
             lift_ratio = safe_ratio(top1["estimated_discount"], top2_score)
             persuasiveness_score = round(
-                (margin * 0.7)
-                + (top1["estimated_discount"] * 0.2)
-                + (margin_rate * 100),
+                (top1["estimated_discount"] * 1.0)
+                + (top1_effective_rate * 100)
+                + (margin * 0.1),
                 2,
             )
             is_compelling = (
@@ -953,6 +1034,7 @@ def derive_persona_candidates(
                     "카페 업종" if brand == GENERIC_CAFE else brand
                     for brand, _ in template.brand_weights
                 ),
+                "transaction_context": ", ".join(template.transaction_context),
                 "top1_card_id": top1["card_id"],
                 "top1_card_name": top1["card_name"],
                 "top1_card_company": top1["card_company"],
@@ -963,6 +1045,8 @@ def derive_persona_candidates(
                 "top2_effective_rate": top2_effective_rate,
                 "top3_card_name": top[2]["card_name"] if len(top) > 2 else "",
                 "top3_estimated_discount": top[2]["estimated_discount"] if len(top) > 2 else 0,
+                "top5_card_ids": ", ".join(str(row["card_id"]) for row in top),
+                "top5_card_names": " | ".join(row["card_name"] for row in top),
                 "top1_margin": margin,
                 "top1_margin_rate": margin_rate,
                 "top1_margin_ratio": round(margin_ratio, 3) if margin_ratio is not None else "",
@@ -992,8 +1076,9 @@ def derive_persona_candidates(
     all_candidates.sort(
         key=lambda row: (
             -row["persuasiveness_score"],
-            -row["top1_margin"],
             -row["top1_estimated_discount"],
+            -row["top1_effective_rate"],
+            -row["top1_margin"],
             row["previous_month_spending"],
             row["base_pattern"],
         )
@@ -1002,16 +1087,46 @@ def derive_persona_candidates(
         candidate for candidate in all_candidates if candidate["is_compelling"] == "yes"
     ]
 
+    def top5_ids(candidate: dict[str, Any]) -> set[int]:
+        ids: set[int] = set()
+        for value in str(candidate.get("top5_card_ids", "")).split(","):
+            value = value.strip()
+            if value.isdigit():
+                ids.add(int(value))
+        return ids
+
+    def has_too_much_top5_overlap(
+        candidate: dict[str, Any],
+        selected_rows: list[dict[str, Any]],
+        max_overlap: int,
+    ) -> bool:
+        candidate_ids = top5_ids(candidate)
+        return any(len(candidate_ids & top5_ids(row)) > max_overlap for row in selected_rows)
+
     selected: list[dict[str, Any]] = []
     seen_top_cards: set[int] = set()
-    for candidate in compelling_candidates:
-        top_card = candidate["top1_card_id"]
-        if top_card in seen_top_cards:
-            continue
-        selected.append({**candidate, "selected_order": len(selected) + 1})
-        seen_top_cards.add(top_card)
-        if len(selected) >= max_personas:
-            break
+    seen_base_patterns: set[str] = set()
+    for max_overlap in (1, 2, 3, 4):
+        for candidate in compelling_candidates:
+            if len(selected) >= max_personas:
+                break
+            top_card = candidate["top1_card_id"]
+            base_pattern = candidate["base_pattern"]
+            if base_pattern in seen_base_patterns:
+                continue
+            if top_card in seen_top_cards:
+                continue
+            if has_too_much_top5_overlap(candidate, selected, max_overlap):
+                continue
+            selected.append(
+                {
+                    **candidate,
+                    "selected_order": len(selected) + 1,
+                    "selection_top5_max_overlap": max_overlap,
+                }
+            )
+            seen_top_cards.add(top_card)
+            seen_base_patterns.add(base_pattern)
 
     return all_candidates, compelling_candidates, selected, matrix_rows
 
@@ -1105,16 +1220,18 @@ def build_report(
         "3. Monthly cafe frequency and ticket size: fixed discounts, monthly caps, and count limits react differently.",
         "4. Benefit structure: rate discount vs fixed discount changes which ticket size wins.",
         "5. Monthly/per-transaction limits: separates light users from heavy users.",
-        "6. Persuasiveness: recommendations should have enough absolute discount and enough Top1-Top2 margin to be explainable.",
+        "6. Visibility: recommendations should show a large enough absolute discount to be noticeable to viewers.",
+        "7. Transaction context: tenant-store personas exclude benefits whose terms remove department-store/mall tenant cafe purchases.",
         "",
         "## Compelling Candidate Criteria",
         "",
         f"- Top1 estimated discount >= **{money(min_top_score)}원**",
-        f"- Top1 - Top2 estimated discount margin >= **{money(min_margin)}원**",
-        f"- Top1 - Top2 margin rate >= **{min_margin_rate:g}%** of monthly cafe spend",
         f"- Top1 effective rate >= **{min_effective_rate:g}%** of monthly cafe spend",
+        f"- Optional Top1 - Top2 margin floor: **{money(min_margin)}원**",
+        f"- Optional Top1 - Top2 margin rate floor: **{min_margin_rate:g}%** of monthly cafe spend",
         "",
-        "These filters remove cases like Top1 1,300원 vs Top2 800원, even when Top1 is technically different.",
+        "The primary goal is a visibly large discount amount. Top1-Top2 margin is kept as a secondary tie-breaker, not the main reason to create a persona.",
+        "Selected personas are then greedily diversified: one row per base persona pattern, unique Top1 cards, and limited Top5 card overlap whenever possible.",
         "",
         "## Key Frequency Tables",
         "",
@@ -1150,6 +1267,7 @@ def build_report(
                 "selected_order",
                 "persona_label",
                 "brand_mix",
+                "transaction_context",
                 "monthly_cafe_transactions",
                 "avg_ticket",
                 "top1_card_name",
@@ -1157,6 +1275,8 @@ def build_report(
                 "top1_estimated_discount",
                 "top1_margin",
                 "top1_margin_rate",
+                "selection_top5_max_overlap",
+                "top5_card_names",
                 "persuasiveness_score",
             ],
         ),
@@ -1168,6 +1288,7 @@ def build_report(
             [
                 "persona_label",
                 "brand_mix",
+                "transaction_context",
                 "top1_card_name",
                 "top1_estimated_discount",
                 "top2_card_name",
@@ -1191,7 +1312,7 @@ def build_report(
         "- `persona_candidates_all.csv`: every synthetic persona tested",
         "- `persona_candidates_compelling.csv`: candidates that pass the persuasiveness filters",
         "- `persona_candidates_selected.csv`: diverse Top1 persona candidates",
-        "- `persona_recommendation_matrix.csv`: Top3 cards per tested persona",
+        "- `persona_recommendation_matrix.csv`: Top5 cards per tested persona",
         "- `persona_analysis_summary.json`: compact machine-readable summary",
         "",
         "Note: the scoring step is a deterministic approximation. Use the selected candidates as test personas, then validate the final recommendations with the LLM pipeline.",

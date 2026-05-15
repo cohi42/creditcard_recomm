@@ -58,7 +58,7 @@ function sleep(ms) {
 
 function parseArgs(argv) {
   const parsed = {
-    dbPath: path.resolve(__dirname, '..', 'cards.db'),
+    dbPath: path.resolve(__dirname, '..', 'db', 'cards.db'),
     model: DEFAULT_MODEL,
     category: CAFE_CATEGORY,
     jobName: DEFAULT_JOB_NAME,
@@ -138,7 +138,7 @@ function printHelpAndExit() {
   node structurization/structure_cafe_benefits_with_gemini.js [options]
 
 Options:
-  --db <path>              SQLite DB path (default: ./cards.db)
+  --db <path>              SQLite DB path (default: ./db/cards.db)
   --model <name>           Gemini model (default: gemini-2.5-flash)
   --category <name>        Benefit category to process (default: ${CAFE_CATEGORY})
   --job-name <name>        Resume checkpoint key (default: ${DEFAULT_JOB_NAME})

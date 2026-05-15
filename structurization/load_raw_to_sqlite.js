@@ -6,7 +6,7 @@ const projectRoot = path.resolve(__dirname, '..');
 
 function parseArgs(argv) {
   const parsed = {
-    dbPath: path.join(projectRoot, 'cards.db'),
+    dbPath: path.join(projectRoot, 'db', 'cards.db'),
     rawDir: path.join(projectRoot, 'card_crawling', 'data', 'raw'),
   };
 
@@ -35,7 +35,7 @@ function printHelpAndExit() {
   node structurization/load_raw_to_sqlite.js [options]
 
 Options:
-  --db <path>       SQLite DB output path (default: ./cards.db)
+  --db <path>       SQLite DB output path (default: ./db/cards.db)
   --raw-dir <path>  Raw card JSON directory (default: ./card_crawling/data/raw)
   -h, --help        Show this help
 `);

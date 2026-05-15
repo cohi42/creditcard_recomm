@@ -3,33 +3,56 @@ const path = require('node:path');
 const { DatabaseSync } = require('node:sqlite');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
+const DB_DIR = path.resolve(PROJECT_ROOT, 'db');
 const OUTPUT_DIR = path.resolve(__dirname, 'persona_analysis_outputs');
 const DEFAULT_DB_FILE = 'cafe_v3.db';
-const DB_FILE = fs.existsSync(path.resolve(PROJECT_ROOT, DEFAULT_DB_FILE))
-  ? DEFAULT_DB_FILE
-  : fs
-      .readdirSync(PROJECT_ROOT)
-      .filter((name) => /^cafe_v\d+.*\.db$/.test(name))
-      .sort()
-      .at(-1);
+const DB_PATH = fs.existsSync(path.resolve(DB_DIR, DEFAULT_DB_FILE))
+  ? path.resolve(DB_DIR, DEFAULT_DB_FILE)
+  : fs.existsSync(DB_DIR)
+    ? fs
+        .readdirSync(DB_DIR)
+        .filter((name) => /^cafe_v\d+.*\.db$/.test(name))
+        .sort()
+        .map((name) => path.resolve(DB_DIR, name))
+        .at(-1)
+    : null;
 
 const GENERIC_CAFE = '__generic_cafe__';
-const TARGET_CANDIDATE_IDS = new Set([
-  'starbucks_heavy_1000000',
-  'starbucks_light_100000',
-  'ediya_local_100000',
-  'coffeebean_twosome_500000',
-  'generic_light_300000',
-]);
+const TENANT_STORE_CONTEXT = 'tenant_store';
+const TENANT_STORE_EXCLUSION_KEYWORDS = [
+  '입점',
+  '백화점',
+  '마트',
+  '대형할인점',
+  '할인점',
+  '쇼핑몰',
+  '아울렛',
+  '면세점',
+  '공항',
+  '호텔',
+  '리조트',
+  '역사',
+  '휴게소',
+  '미군부대',
+  '임대매장',
+  '대형시설',
+];
 const TEMPLATE_BRAND_WEIGHTS = {
   generic_light: [[GENERIC_CAFE, 1]],
+  generic_frequent_light: [[GENERIC_CAFE, 1]],
   starbucks_light: [['스타벅스', 1]],
   starbucks_heavy: [['스타벅스', 1]],
   premium_hopper: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 2], ['폴바셋', 1]],
   coffeebean_twosome: [['커피빈', 3], ['투썸플레이스', 3], ['스타벅스', 1]],
   budget_frequent: [['메가커피', 2], ['컴포즈커피', 2], ['빽다방', 2], ['이디야', 1]],
+  ultra_budget_coffee: [['메가커피', 3], ['컴포즈커피', 3], ['빽다방', 2], ['더벤티', 1]],
   high_ticket_social: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 1], [GENERIC_CAFE, 1]],
+  premium_chain_group: [['스타벅스', 2], ['투썸플레이스', 2], ['커피빈', 1], ['폴바셋', 1]],
+  department_store_social: [['스타벅스', 2], ['폴바셋', 2], ['투썸플레이스', 1], ['커피빈', 1], [GENERIC_CAFE, 1]],
   ediya_local: [['이디야', 3], ['메가커피', 1], ['컴포즈커피', 1]],
+};
+const TEMPLATE_TRANSACTION_CONTEXT = {
+  department_store_social: [TENANT_STORE_CONTEXT],
 };
 
 function parseCsv(text) {
@@ -253,8 +276,23 @@ function matchesBrand(benefit, brand) {
   return benefit.brands.includes(brand);
 }
 
+function hasTenantStoreExclusion(benefit) {
+  return (benefit.exclusions ?? []).some((exclusion) => {
+    const compact = String(exclusion ?? '').replace(/\s+/g, '');
+    return TENANT_STORE_EXCLUSION_KEYWORDS.some((keyword) => compact.includes(keyword));
+  });
+}
+
+function matchesTransactionContext(benefit, tx) {
+  if ((tx.contextFlags ?? new Set()).has(TENANT_STORE_CONTEXT) && hasTenantStoreExclusion(benefit)) {
+    return false;
+  }
+  return true;
+}
+
 function rawDiscountForTx(benefit, tx, previousMonthSpend) {
   if (!matchesBrand(benefit, tx.brand)) return 0;
+  if (!matchesTransactionContext(benefit, tx)) return 0;
   if (!isPerformanceEligible(benefit, previousMonthSpend)) return 0;
 
   const minAmount = transactionMinAmount(benefit);
@@ -275,6 +313,11 @@ function expandedTransactions(persona) {
   const weighted = [];
   const templateKey = persona.candidate_id.replace(/_\d+$/, '');
   const brandWeights = TEMPLATE_BRAND_WEIGHTS[templateKey] ?? [];
+  const contextFlags = new Set(TEMPLATE_TRANSACTION_CONTEXT[templateKey] ?? []);
+  for (const rawContext of String(persona.transaction_context ?? '').split(',')) {
+    const context = rawContext.trim();
+    if (context) contextFlags.add(context);
+  }
 
   for (const [brandText, weight] of brandWeights) {
     const brand = normalizeBrand(brandText);
@@ -292,7 +335,7 @@ function expandedTransactions(persona) {
   for (let index = 0; index < count; index += 1) {
     const brand = weighted[index % weighted.length];
     const amount = Math.max(100, Math.round((avgTicket * multipliers[index % multipliers.length]) / 100) * 100);
-    transactions.push({ brand, amount });
+    transactions.push({ brand, amount, contextFlags });
   }
   return transactions;
 }
@@ -337,7 +380,7 @@ function scoreCard(benefits, previousMonthSpend, transactions, alternativeCapMod
 }
 
 function loadBenefits() {
-  const db = new DatabaseSync(path.resolve(PROJECT_ROOT, DB_FILE));
+  const db = new DatabaseSync(DB_PATH);
   const benefitRows = db.prepare(`
     SELECT b.benefit_id, b.card_id, c.card_name, c.card_company,
            b.discount_rate, b.discount_amount, b.discount_type, b.frequency_limit,
@@ -352,6 +395,7 @@ function loadBenefits() {
   const placeholders = ids.map(() => '?').join(',');
   const brandsByBenefit = new Map();
   const tiersByBenefit = new Map();
+  const exclusionsByBenefit = new Map();
 
   for (const row of db.prepare(`
     SELECT bb.benefit_id, br.brand_name
@@ -377,6 +421,16 @@ function loadBenefits() {
     });
   }
 
+  for (const row of db.prepare(`
+    SELECT benefit_id, exclusion_type
+    FROM exclusions
+    WHERE benefit_id IN (${placeholders})
+    ORDER BY benefit_id, exclusion_id
+  `).all(...ids)) {
+    if (!exclusionsByBenefit.has(row.benefit_id)) exclusionsByBenefit.set(row.benefit_id, []);
+    if (row.exclusion_type) exclusionsByBenefit.get(row.benefit_id).push(String(row.exclusion_type));
+  }
+
   db.close();
 
   return benefitRows.map((row) => ({
@@ -393,14 +447,14 @@ function loadBenefits() {
     min_spend: toNumberOrNull(row.min_spend),
     brands: [...(brandsByBenefit.get(row.benefit_id) ?? new Set())].filter(Boolean),
     tiers: tiersByBenefit.get(row.benefit_id) ?? [],
+    exclusions: exclusionsByBenefit.get(row.benefit_id) ?? [],
   }));
 }
 
 function main() {
-  if (!DB_FILE) throw new Error('cafe_v*.db not found');
+  if (!DB_PATH) throw new Error('db/cafe_v*.db not found');
 
-  const selected = parseCsv(fs.readFileSync(path.resolve(OUTPUT_DIR, 'persona_candidates_all.csv'), 'utf8'))
-    .filter((row) => TARGET_CANDIDATE_IDS.has(row.candidate_id));
+  const selected = parseCsv(fs.readFileSync(path.resolve(OUTPUT_DIR, 'persona_candidates_selected.csv'), 'utf8'));
   const benefits = loadBenefits();
   const cards = new Map();
 
@@ -436,6 +490,7 @@ function main() {
       rows.push({
         candidate_id: persona.candidate_id,
         persona_label: persona.persona_label,
+        transaction_context: persona.transaction_context ?? '',
         rank: index + 1,
         card_id: card.card_id,
         card_name: card.card_name,

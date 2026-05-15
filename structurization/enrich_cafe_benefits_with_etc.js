@@ -12,10 +12,10 @@ function buildArgs(userArgs) {
   const args = [SCRIPT_PATH, '--notice-category', ETC_CATEGORY];
 
   if (!hasOption(userArgs, '--source-db') && !hasOption(userArgs, '--db')) {
-    args.push('--source-db', path.resolve(__dirname, '..', 'cafe_v2.db'));
+    args.push('--source-db', path.resolve(__dirname, '..', 'db', 'cafe_v2.db'));
   }
   if (!hasOption(userArgs, '--output-db')) {
-    args.push('--output-db', path.resolve(__dirname, '..', 'cafe_v3.db'));
+    args.push('--output-db', path.resolve(__dirname, '..', 'db', 'cafe_v3.db'));
   }
   if (!hasOption(userArgs, '--log')) {
     args.push('--log', path.resolve(__dirname, 'etc_enrichment_log.json'));
