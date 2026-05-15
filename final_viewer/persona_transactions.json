@@ -2,8 +2,8 @@
   "personas": [
     {
       "persona_name": "페르소나 1: 스타벅스 다빈도형",
-      "usage_concept": "스타벅스를 출근길·점심 후·주말까지 반복 이용하는 고빈도 사용자 (직장인 가정)",
-      "previous_month_performance": "1,000,000원",
+      "usage_concept": "스타벅스를 사랑하는 강남으로 매일 출근하는 직장인. 아침마다 스타벅스에서 텀블러를 채워 사무실로 들고 가고, 점심 후 동료와 한 번 더 들르곤 한다.",
+      "previous_month_performance": 1000000,
       "transactions": [
         {
           "id": 1,
@@ -185,8 +185,8 @@
     },
     {
       "persona_name": "페르소나 2: 스타벅스 가끔형",
-      "usage_concept": "스타벅스를 좋아하지만 헤비 유저는 아닌 라이트 사용자 (학생 가정)",
-      "previous_month_performance": "300,000원",
+      "usage_concept": "아주대 캠퍼스 앞에서 자취하는 학생. 커피를 자주 마시진 않지만, 평일 수업이 끝나면 일주일에 한두 번, 학교 앞 스타벅스에 들러 책을 펴거나 친구를 만난다.",
+      "previous_month_performance": 300000,
       "transactions": [
         {
           "id": 1,
@@ -240,8 +240,8 @@
     },
     {
       "persona_name": "페르소나 3: 이디야 생활권형",
-      "usage_concept": "학교·회사·동네 주변에서 이디야를 중심으로 생활권 카페를 반복 이용하는 사용자 (학생 가정)",
-      "previous_month_performance": "300,000원",
+      "usage_concept": "수원 인계동에 사는 아주대생. 집 앞 이디야가 그에겐 제일 편한 카공 공간이다. 가끔씩은 다른 카페에서 친구와 약속을 갖는다. 굳이 비싼 카페까지 갈 일은 거의 없다.",
+      "previous_month_performance": 300000,
       "transactions": [
         {
           "id": 1,
@@ -264,7 +264,7 @@
           "date": "4/3",
           "day_of_week": "수",
           "time": "11:30",
-          "merchant": "메가커피 수원아주대점",
+          "merchant": "메가MGC커피 수원아주대점",
           "amount_krw": 2800
         },
         {
@@ -336,7 +336,7 @@
           "date": "4/16",
           "day_of_week": "화",
           "time": "13:30",
-          "merchant": "메가커피 수원아주대점",
+          "merchant": "메가MGC커피 수원아주대점",
           "amount_krw": 2800
         },
         {
@@ -367,8 +367,8 @@
     },
     {
       "persona_name": "페르소나 4: 프리미엄 카페 모임형",
-      "usage_concept": "평일 직장 미팅과 주말 친구 모임에서 일행 음료·디저트까지 본인이 결제하는 호스트형 직장인",
-      "previous_month_performance": "800,000원",
+      "usage_concept": "광교에서 근무하는 직장인. 평일 점심 후 회사 근처 폴바셋·투썸에서 동료와 미팅을 잡고, 가끔 강남 출장길에도 카페에 들른다. 주말엔 친구·가족과 광교갤러리아·롯데몰광교 카페에 모이는데, 총무로서 일행 음료와 디저트까지 본인이 결제하는 일이 잦다.",
+      "previous_month_performance": 800000,
       "transactions": [
         {
           "id": 1,
@@ -438,8 +438,8 @@
     },
     {
       "persona_name": "페르소나 5: 주요 프리미엄 체인 순회형",
-      "usage_concept": "특정 브랜드 한 곳에 고정되지 않고 스타벅스·투썸·커피빈·폴바셋을 상황에 따라 골고루 이용하는 사용자",
-      "previous_month_performance": "300,000원",
+      "usage_concept": "강남·광화문·여의도를 미팅으로 오가는 직장인. 어떤 날은 폴바셋, 어떤 날은 커피빈, 미팅 사이 잠시 옮길 땐 또 다른 스타벅스. 특정 브랜드에 묶이지 않고 그날 동선과 자리 분위기에 따라 카페를 고른다.",
+      "previous_month_performance": 300000,
       "transactions": [
         {
           "id": 1,
@@ -549,8 +549,8 @@
     },
     {
       "persona_name": "페르소나 6: 저가커피 초저가 다빈도형",
-      "usage_concept": "출근길·일상에서 메가커피·컴포즈·빽다방 등 저가 체인을 반복 이용하는 사용자",
-      "previous_month_performance": "300,000원",
+      "usage_concept": "아주대 삼거리에서 자취하는 대학원생. 매일 아침 등굣·출근길에 저카 커피 브랜드에서 한 잔을 사 들고 들어가고, 오후에도 경우에 따라 종류를 바꿔가며 마신다. 한 잔에 3천 원을 넘기는 일은 거의 없다.",
+      "previous_month_performance": 300000,
       "transactions": [
         {
           "id": 1,
