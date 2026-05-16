@@ -9,3 +9,4 @@ structurization/enrichment_log.json
 test_outputs
 notice_enrichment_delta.json
 final_viewer/persona_analysis_outputs
+final_viewer/recommendation_outputs
