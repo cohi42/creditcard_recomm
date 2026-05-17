@@ -11,9 +11,15 @@ const DEFAULT_MODEL = 'gemini-2.5-flash';
 const DEFAULT_YEAR = 2026;
 const DEFAULT_REQUEST_DELAY_MS = 250;
 const DEFAULT_API_RETRIES = 5;
+const DEFAULT_CONCURRENCY = 1;
 const BASE_BACKOFF_MS = 1000;
 const PROCESSING_ORDER = 'card_persona_transaction';
-const PROMPT_CONTEXT_VERSION = 'offline_in_store_v1';
+const PROMPT_CONTEXT_VERSION = 'offline_in_store_v4_transaction_min_spend_filter';
+const PRE_LLM_MONTHLY_AMOUNT_BLOCKED_BY = 'monthly_cap_reached_pre_llm';
+const PRE_LLM_MONTHLY_COUNT_BLOCKED_BY = 'monthly_count_reached_pre_llm';
+const PRE_LLM_PREVIOUS_MONTH_SPENDING_BLOCKED_BY = 'previous_month_spending_insufficient_pre_llm';
+const PRE_LLM_TRANSACTION_MIN_SPEND_BLOCKED_BY = 'transaction_min_spend_not_met_pre_llm';
+const TRANSACTION_MIN_SPEND_SAFE_UPPER_BOUND_EXCLUSIVE = 20000;
 
 const SYSTEM_PROMPT = [
   '너는 카드 혜택 적용 여부를 판단하는 엔진이다.',
@@ -81,6 +87,7 @@ function parseArgs(argv) {
     resume: true,
     dryRun: false,
     maxCalls: null,
+    concurrency: DEFAULT_CONCURRENCY,
   };
 
   for (let index = 2; index < argv.length; index += 1) {
@@ -146,6 +153,11 @@ function parseArgs(argv) {
       index += 1;
       continue;
     }
+    if (arg === '--concurrency' && argv[index + 1]) {
+      parsed.concurrency = Number.parseInt(argv[index + 1], 10);
+      index += 1;
+      continue;
+    }
     if (arg === '--dry-run') {
       parsed.dryRun = true;
       continue;
@@ -173,6 +185,9 @@ function parseArgs(argv) {
   }
   if (parsed.maxCalls !== null && (!Number.isInteger(parsed.maxCalls) || parsed.maxCalls < 1)) {
     throw new Error(`--max-calls must be an integer >= 1 (got: ${parsed.maxCalls})`);
+  }
+  if (![1, 2].includes(parsed.concurrency)) {
+    throw new Error(`--concurrency must be 1 or 2 (got: ${parsed.concurrency})`);
   }
 
   if (!parsed.outputLog) {
@@ -207,6 +222,7 @@ Options:
   --output-recommendations <path>
                               output ranked recommendation JSON path
   --max-calls <n>             stop after N calls (for smoke testing)
+  --concurrency <1|2>         worker count. 2 splits personas into odd/even workers (default: ${DEFAULT_CONCURRENCY})
   --dry-run                   skip API calls and emit mock non-applicable decisions
   --no-resume                 ignore existing JSONL log and start from scratch
   -h, --help                  show this help
@@ -643,6 +659,51 @@ function initCardState(policy) {
     monthlyRemainingAmount: policy.monthlyAmountCap,
     totalDiscount: 0,
   };
+}
+
+function isPreviousMonthSpendingInsufficient(policy) {
+  return policy.monthlyAmountCap === 0;
+}
+
+function getSafeTransactionMinSpend(benefit) {
+  const minSpend = toIntegerOrNull(benefit?.min_spend);
+  if (
+    minSpend !== null &&
+    minSpend > 0 &&
+    minSpend < TRANSACTION_MIN_SPEND_SAFE_UPPER_BOUND_EXCLUSIVE
+  ) {
+    return minSpend;
+  }
+  return null;
+}
+
+function isTransactionMinSpendInsufficient(card, transaction) {
+  if (!Array.isArray(card?.benefits) || card.benefits.length < 1) {
+    return false;
+  }
+
+  const transactionAmount = toIntegerOrNull(transaction?.amount);
+  if (transactionAmount === null) {
+    return false;
+  }
+
+  return card.benefits.every((benefit) => {
+    const safeMinSpend = getSafeTransactionMinSpend(benefit);
+    if (safeMinSpend === null) {
+      return false;
+    }
+    return transactionAmount < safeMinSpend;
+  });
+}
+
+function getPreLlmBlockedBy(policy, state) {
+  if (policy.monthlyAmountCap !== null && state.totalDiscount >= policy.monthlyAmountCap) {
+    return PRE_LLM_MONTHLY_AMOUNT_BLOCKED_BY;
+  }
+  if (policy.monthlyCountCap !== null && state.monthlyCount >= policy.monthlyCountCap) {
+    return PRE_LLM_MONTHLY_COUNT_BLOCKED_BY;
+  }
+  return null;
 }
 
 function applyPostProcessing({
@@ -1752,8 +1813,22 @@ function isDryRunCheckpoint(record) {
   );
 }
 
+function isPreLlmSkippedCheckpoint(record) {
+  return (
+    record?.llm_called === false &&
+    record?.llm_raw_text === null &&
+    record?.llm_normalized === null &&
+    (record?.postprocess?.blocked_by === PRE_LLM_MONTHLY_AMOUNT_BLOCKED_BY ||
+      record?.postprocess?.blocked_by === PRE_LLM_MONTHLY_COUNT_BLOCKED_BY ||
+      record?.postprocess?.blocked_by === PRE_LLM_PREVIOUS_MONTH_SPENDING_BLOCKED_BY ||
+      record?.postprocess?.blocked_by === PRE_LLM_TRANSACTION_MIN_SPEND_BLOCKED_BY)
+  );
+}
+
 function isUsableCheckpointRecord({ record, args, persona, transaction, card }) {
-  if (!record || !record.llm_normalized) return false;
+  if (!record) return false;
+  const isPreLlmSkipped = isPreLlmSkippedCheckpoint(record);
+  if (!record.llm_normalized && !isPreLlmSkipped) return false;
 
   if (!sameNumber(record.persona?.persona_id, persona.persona_id)) return false;
   if (!sameNumber(record.persona?.previous_month_spending, persona.previous_month_spending)) return false;
@@ -1776,6 +1851,15 @@ function isUsableCheckpointRecord({ record, args, persona, transaction, card }) 
 }
 
 function normalizedDecisionFromCheckpoint(record) {
+  if (isPreLlmSkippedCheckpoint(record)) {
+    return {
+      applicable: false,
+      discount_amount: 0,
+      reasoning: String(record.postprocess?.blocked_by ?? ''),
+      _raw_parsed_object: null,
+    };
+  }
+
   const applicableRaw = record.llm_normalized?.applicable;
   const applicable =
     typeof applicableRaw === 'boolean'
@@ -1792,6 +1876,64 @@ function normalizedDecisionFromCheckpoint(record) {
     discount_amount: applicable ? discountAmount : 0,
     reasoning: typeof record.llm_normalized?.reasoning === 'string' ? record.llm_normalized.reasoning : '',
     _raw_parsed_object: record.llm_raw_parsed_object ?? null,
+  };
+}
+
+function buildPreLlmSkipLogRecord({
+  args,
+  inputMode,
+  persona,
+  previousMonthSpending,
+  card,
+  transaction,
+  policy,
+  state,
+  blockedBy,
+}) {
+  return {
+    ts_utc: new Date().toISOString(),
+    call_index: null,
+    checkpoint: {
+      schema_version: 1,
+      model: args.model,
+      dry_run: args.dryRun,
+      input_mode: inputMode,
+      processing_order: PROCESSING_ORDER,
+      prompt_context_version: PROMPT_CONTEXT_VERSION,
+    },
+    persona: {
+      persona_id: persona.persona_id,
+      persona_name: persona.persona_name,
+      previous_month_spending: previousMonthSpending,
+    },
+    card: {
+      card_id: card.card_id,
+      card_name: card.card_name,
+    },
+    transaction: {
+      id: transaction.id,
+      date: transaction.date,
+      time: transaction.time,
+      merchant: transaction.merchant,
+      amount: transaction.amount,
+    },
+    llm_called: false,
+    llm_raw_text: null,
+    llm_normalized: null,
+    llm_raw_parsed_object: null,
+    postprocess: {
+      policy,
+      before_postprocess_amount: null,
+      after_per_transaction_cap_amount: null,
+      blocked_by: blockedBy,
+      final_amount: 0,
+      state_snapshot: {
+        monthly_count: state.monthlyCount,
+        monthly_remaining_amount: state.monthlyRemainingAmount,
+        total_discount: state.totalDiscount,
+      },
+    },
+    model_error: null,
   };
 }
 
@@ -1894,175 +2036,329 @@ async function runSimulation(args) {
 
   process.on('SIGINT', handleSigint);
 
-  try {
+  function workerSuffix(workerName) {
+    return args.concurrency === 2 ? ` worker=${workerName}` : '';
+  }
+
+  function reserveNewCallSlot() {
+    if (args.maxCalls !== null && newCallsExecuted >= args.maxCalls) {
+      maxCallsReached = true;
+      return null;
+    }
+
+    newCallsExecuted += 1;
+    return checkpoint.stats.maxCallIndex + newCallsExecuted;
+  }
+
+  async function processCardPersona({ card, cardPayload, persona, workerName }) {
+    const personaKey = String(persona.persona_id);
+    const previousMonthSpending = Number(persona.previous_month_spending) || 0;
+    const policy = buildCardPolicy(card, previousMonthSpending);
+    const state = initCardState(policy);
+
+    if (isPreviousMonthSpendingInsufficient(policy)) {
+      for (const transaction of persona.transactions) {
+        if (stopRequested || maxCallsReached) break;
+
+        const cacheKey = checkpointKey({
+          personaId: persona.persona_id,
+          transactionId: transaction.id,
+          cardId: card.card_id,
+        });
+        const cachedRecord = checkpoint.records.get(cacheKey);
+        const canUseCheckpoint = isUsableCheckpointRecord({
+          record: cachedRecord,
+          args,
+          persona,
+          transaction,
+          card,
+        });
+
+        if (cachedRecord && !canUseCheckpoint) {
+          checkpointIgnoredCalls += 1;
+        }
+
+        matrix[personaKey][transaction.id][card.card_id] = 0;
+        totals[personaKey][card.card_id] += 0;
+        totalCallsCompleted += 1;
+
+        if (canUseCheckpoint) {
+          resumedCalls += 1;
+        } else {
+          appendLogRecord(
+            args.outputLog,
+            buildPreLlmSkipLogRecord({
+              args,
+              inputMode,
+              persona,
+              previousMonthSpending,
+              card,
+              transaction,
+              policy,
+              state,
+              blockedBy: PRE_LLM_PREVIOUS_MONTH_SPENDING_BLOCKED_BY,
+            })
+          );
+        }
+
+        console.log(
+          `[${totalCallsCompleted}/${totalCallsPlanned}]${workerSuffix(workerName)} persona=${
+            persona.persona_id
+          } tx=${transaction.id} card=${card.card_id} source=${
+            canUseCheckpoint ? 'checkpoint' : 'pre_llm'
+          } llm=skipped final=0 blocked=${PRE_LLM_PREVIOUS_MONTH_SPENDING_BLOCKED_BY}`
+        );
+      }
+      return;
+    }
+
+    for (const transaction of persona.transactions) {
+      if (stopRequested || maxCallsReached) break;
+
+      const preLlmBlockedBy = getPreLlmBlockedBy(policy, state);
+      const cacheKey = checkpointKey({
+        personaId: persona.persona_id,
+        transactionId: transaction.id,
+        cardId: card.card_id,
+      });
+      const cachedRecord = checkpoint.records.get(cacheKey);
+      const canUseCheckpoint = isUsableCheckpointRecord({
+        record: cachedRecord,
+        args,
+        persona,
+        transaction,
+        card,
+      });
+
+      if (cachedRecord && !canUseCheckpoint) {
+        checkpointIgnoredCalls += 1;
+      }
+
+      if (preLlmBlockedBy && !canUseCheckpoint) {
+        matrix[personaKey][transaction.id][card.card_id] = 0;
+        totals[personaKey][card.card_id] += 0;
+        totalCallsCompleted += 1;
+
+        appendLogRecord(
+          args.outputLog,
+          buildPreLlmSkipLogRecord({
+            args,
+            inputMode,
+            persona,
+            previousMonthSpending,
+            card,
+            transaction,
+            policy,
+            state,
+            blockedBy: preLlmBlockedBy,
+          })
+        );
+        console.log(
+          `[${totalCallsCompleted}/${totalCallsPlanned}]${workerSuffix(workerName)} persona=${
+            persona.persona_id
+          } tx=${transaction.id} card=${card.card_id} source=pre_llm llm=skipped final=0 blocked=${preLlmBlockedBy}`
+        );
+        continue;
+      }
+
+      const transactionMinSpendBlocked = isTransactionMinSpendInsufficient(card, transaction);
+      if (transactionMinSpendBlocked && !canUseCheckpoint) {
+        matrix[personaKey][transaction.id][card.card_id] = 0;
+        totals[personaKey][card.card_id] += 0;
+        totalCallsCompleted += 1;
+
+        appendLogRecord(
+          args.outputLog,
+          buildPreLlmSkipLogRecord({
+            args,
+            inputMode,
+            persona,
+            previousMonthSpending,
+            card,
+            transaction,
+            policy,
+            state,
+            blockedBy: PRE_LLM_TRANSACTION_MIN_SPEND_BLOCKED_BY,
+          })
+        );
+        console.log(
+          `[${totalCallsCompleted}/${totalCallsPlanned}]${workerSuffix(workerName)} persona=${
+            persona.persona_id
+          } tx=${transaction.id} card=${card.card_id} source=pre_llm llm=skipped final=0 blocked=${PRE_LLM_TRANSACTION_MIN_SPEND_BLOCKED_BY}`
+        );
+        continue;
+      }
+
+      let rawModelText = null;
+      let normalizedDecision = null;
+      let modelError = null;
+      let fromCheckpoint = false;
+      let callIndex = null;
+
+      if (canUseCheckpoint) {
+        fromCheckpoint = true;
+        resumedCalls += 1;
+        rawModelText = cachedRecord.llm_raw_text ?? null;
+        normalizedDecision = normalizedDecisionFromCheckpoint(cachedRecord);
+        if (isPreLlmSkippedCheckpoint(cachedRecord)) {
+          // This record represents a deterministic pre-LLM zero, not a model success.
+        } else if (cachedRecord.model_error) {
+          failedCalls += 1;
+        } else {
+          successCalls += 1;
+        }
+      } else {
+        callIndex = reserveNewCallSlot();
+        if (callIndex === null) {
+          break;
+        }
+
+        try {
+          const decision = await getModelDecision({
+            dryRun: args.dryRun,
+            apiKey,
+            model: args.model,
+            persona: {
+              persona_id: persona.persona_id,
+              persona_name: persona.persona_name,
+              previous_month_spending: previousMonthSpending,
+            },
+            transaction,
+            cardPayload,
+            apiRetries: args.apiRetries,
+          });
+          rawModelText = decision.rawText;
+          normalizedDecision = decision.normalized;
+          successCalls += 1;
+        } catch (error) {
+          modelError = error;
+          failedCalls += 1;
+          rawModelText = String(error instanceof Error ? error.stack ?? error.message : error);
+          normalizedDecision = {
+            applicable: false,
+            discount_amount: 0,
+            reasoning: `MODEL_ERROR: ${error instanceof Error ? error.message : String(error)}`,
+            _raw_parsed_object: null,
+          };
+        }
+      }
+
+      const post = applyPostProcessing({
+        decision: normalizedDecision,
+        transaction,
+        policy,
+        state,
+      });
+
+      matrix[personaKey][transaction.id][card.card_id] = post.finalAmount;
+      totals[personaKey][card.card_id] += post.finalAmount;
+      totalCallsCompleted += 1;
+
+      if (!fromCheckpoint) {
+        const logRecord = {
+          ts_utc: new Date().toISOString(),
+          call_index: callIndex,
+          checkpoint: {
+            schema_version: 1,
+            model: args.model,
+            dry_run: args.dryRun,
+            input_mode: inputMode,
+            processing_order: PROCESSING_ORDER,
+            prompt_context_version: PROMPT_CONTEXT_VERSION,
+          },
+          persona: {
+            persona_id: persona.persona_id,
+            persona_name: persona.persona_name,
+            previous_month_spending: previousMonthSpending,
+          },
+          card: {
+            card_id: card.card_id,
+            card_name: card.card_name,
+          },
+          transaction: {
+            id: transaction.id,
+            date: transaction.date,
+            time: transaction.time,
+            merchant: transaction.merchant,
+            amount: transaction.amount,
+          },
+          llm_called: true,
+          llm_raw_text: rawModelText,
+          llm_normalized: {
+            applicable: normalizedDecision.applicable,
+            discount_amount: normalizedDecision.discount_amount,
+            reasoning: normalizedDecision.reasoning,
+          },
+          llm_raw_parsed_object: normalizedDecision._raw_parsed_object,
+          postprocess: {
+            policy,
+            before_postprocess_amount: post.beforePostprocessAmount,
+            after_per_transaction_cap_amount: post.afterPerTransactionCapAmount,
+            blocked_by: post.blockedBy,
+            final_amount: post.finalAmount,
+            state_snapshot: {
+              monthly_count: state.monthlyCount,
+              monthly_remaining_amount: state.monthlyRemainingAmount,
+              total_discount: state.totalDiscount,
+            },
+          },
+          model_error: modelError ? String(modelError instanceof Error ? modelError.message : modelError) : null,
+        };
+
+        appendLogRecord(args.outputLog, logRecord);
+      }
+
+      console.log(
+        `[${totalCallsCompleted}/${totalCallsPlanned}]${workerSuffix(workerName)} persona=${
+          persona.persona_id
+        } tx=${transaction.id} card=${card.card_id} source=${
+          fromCheckpoint ? 'checkpoint' : 'api'
+        } llm=${normalizedDecision.discount_amount} final=${post.finalAmount}${
+          post.blockedBy ? ` blocked=${post.blockedBy}` : ''
+        }${modelError ? ' [MODEL_ERROR]' : ''}`
+      );
+
+      const shouldDelay =
+        !fromCheckpoint &&
+        args.requestDelayMs > 0 &&
+        !stopRequested &&
+        !maxCallsReached &&
+        totalCallsCompleted < totalCallsPlanned &&
+        (args.maxCalls === null || newCallsExecuted < args.maxCalls);
+      if (shouldDelay) {
+        await sleep(args.requestDelayMs);
+      }
+    }
+  }
+
+  async function processWorker(workerName, workerPersonas) {
     for (const card of cards) {
       if (stopRequested || maxCallsReached) break;
 
       const cardPayload = cardPayloads.get(card.card_id);
 
-      for (const persona of personas) {
+      for (const persona of workerPersonas) {
         if (stopRequested || maxCallsReached) break;
 
-        const personaKey = String(persona.persona_id);
-        const previousMonthSpending = Number(persona.previous_month_spending) || 0;
-        const policy = buildCardPolicy(card, previousMonthSpending);
-        const state = initCardState(policy);
-
-        for (const transaction of persona.transactions) {
-          if (stopRequested || maxCallsReached) break;
-
-          const cacheKey = checkpointKey({
-            personaId: persona.persona_id,
-            transactionId: transaction.id,
-            cardId: card.card_id,
-          });
-          const cachedRecord = checkpoint.records.get(cacheKey);
-          const canUseCheckpoint = isUsableCheckpointRecord({
-            record: cachedRecord,
-            args,
-            persona,
-            transaction,
-            card,
-          });
-
-          if (cachedRecord && !canUseCheckpoint) {
-            checkpointIgnoredCalls += 1;
-          }
-
-          if (!canUseCheckpoint && args.maxCalls !== null && newCallsExecuted >= args.maxCalls) {
-            maxCallsReached = true;
-            break;
-          }
-
-          let rawModelText = null;
-          let normalizedDecision = null;
-          let modelError = null;
-          let fromCheckpoint = false;
-
-          if (canUseCheckpoint) {
-            fromCheckpoint = true;
-            resumedCalls += 1;
-            rawModelText = cachedRecord.llm_raw_text ?? null;
-            normalizedDecision = normalizedDecisionFromCheckpoint(cachedRecord);
-            if (cachedRecord.model_error) {
-              failedCalls += 1;
-            } else {
-              successCalls += 1;
-            }
-          } else {
-            newCallsExecuted += 1;
-
-            try {
-              const decision = await getModelDecision({
-                dryRun: args.dryRun,
-                apiKey,
-                model: args.model,
-                persona: {
-                  persona_id: persona.persona_id,
-                  persona_name: persona.persona_name,
-                  previous_month_spending: previousMonthSpending,
-                },
-                transaction,
-                cardPayload,
-                apiRetries: args.apiRetries,
-              });
-              rawModelText = decision.rawText;
-              normalizedDecision = decision.normalized;
-              successCalls += 1;
-            } catch (error) {
-              modelError = error;
-              failedCalls += 1;
-              rawModelText = String(error instanceof Error ? error.stack ?? error.message : error);
-              normalizedDecision = {
-                applicable: false,
-                discount_amount: 0,
-                reasoning: `MODEL_ERROR: ${error instanceof Error ? error.message : String(error)}`,
-                _raw_parsed_object: null,
-              };
-            }
-          }
-
-          const post = applyPostProcessing({
-            decision: normalizedDecision,
-            transaction,
-            policy,
-            state,
-          });
-
-          matrix[personaKey][transaction.id][card.card_id] = post.finalAmount;
-          totals[personaKey][card.card_id] += post.finalAmount;
-          totalCallsCompleted += 1;
-
-          if (!fromCheckpoint) {
-            const logRecord = {
-              ts_utc: new Date().toISOString(),
-              call_index: checkpoint.stats.maxCallIndex + newCallsExecuted,
-              checkpoint: {
-                schema_version: 1,
-                model: args.model,
-                dry_run: args.dryRun,
-                input_mode: inputMode,
-                processing_order: PROCESSING_ORDER,
-                prompt_context_version: PROMPT_CONTEXT_VERSION,
-              },
-              persona: {
-                persona_id: persona.persona_id,
-                persona_name: persona.persona_name,
-                previous_month_spending: previousMonthSpending,
-              },
-              card: {
-                card_id: card.card_id,
-                card_name: card.card_name,
-              },
-              transaction: {
-                id: transaction.id,
-                date: transaction.date,
-                time: transaction.time,
-                merchant: transaction.merchant,
-                amount: transaction.amount,
-              },
-              llm_raw_text: rawModelText,
-              llm_normalized: {
-                applicable: normalizedDecision.applicable,
-                discount_amount: normalizedDecision.discount_amount,
-                reasoning: normalizedDecision.reasoning,
-              },
-              llm_raw_parsed_object: normalizedDecision._raw_parsed_object,
-              postprocess: {
-                policy,
-                before_postprocess_amount: post.beforePostprocessAmount,
-                after_per_transaction_cap_amount: post.afterPerTransactionCapAmount,
-                blocked_by: post.blockedBy,
-                final_amount: post.finalAmount,
-                state_snapshot: {
-                  monthly_count: state.monthlyCount,
-                  monthly_remaining_amount: state.monthlyRemainingAmount,
-                  total_discount: state.totalDiscount,
-                },
-              },
-              model_error: modelError ? String(modelError instanceof Error ? modelError.message : modelError) : null,
-            };
-
-            appendLogRecord(args.outputLog, logRecord);
-          }
-
-          console.log(
-            `[${totalCallsCompleted}/${totalCallsPlanned}] persona=${persona.persona_id} tx=${transaction.id} card=${card.card_id} source=${fromCheckpoint ? 'checkpoint' : 'api'} llm=${normalizedDecision.discount_amount} final=${post.finalAmount}${post.blockedBy ? ` blocked=${post.blockedBy}` : ''}${modelError ? ' [MODEL_ERROR]' : ''}`
-          );
-
-          const shouldDelay =
-            !fromCheckpoint &&
-            args.requestDelayMs > 0 &&
-            !stopRequested &&
-            !maxCallsReached &&
-            totalCallsCompleted < totalCallsPlanned &&
-            (args.maxCalls === null || newCallsExecuted < args.maxCalls);
-          if (shouldDelay) {
-            await sleep(args.requestDelayMs);
-          }
-        }
+        await processCardPersona({ card, cardPayload, persona, workerName });
       }
     }
+  }
+
+  const personaWorkers =
+    args.concurrency === 2
+      ? [
+          { workerName: 'odd', personas: personas.filter((persona) => persona.persona_id % 2 === 1) },
+          { workerName: 'even', personas: personas.filter((persona) => persona.persona_id % 2 === 0) },
+        ]
+      : [{ workerName: 'all', personas }];
+
+  try {
+    await Promise.all(
+      personaWorkers
+        .filter((worker) => worker.personas.length > 0)
+        .map((worker) => processWorker(worker.workerName, worker.personas))
+    );
   } finally {
     process.off('SIGINT', handleSigint);
   }
@@ -2076,6 +2372,8 @@ async function runSimulation(args) {
     input_mode: inputMode,
     processing_order: PROCESSING_ORDER,
     prompt_context_version: PROMPT_CONTEXT_VERSION,
+    concurrency: args.concurrency,
+    persona_worker_partition: args.concurrency === 2 ? 'odd_even' : 'single_worker',
     output_log_jsonl: args.outputLog,
     output_recommendations_json: args.outputRecommendationsJson,
     personas: personas.map((persona) => ({
@@ -2158,6 +2456,7 @@ if (require.main === module) {
 
 module.exports = {
   DEFAULT_API_RETRIES,
+  DEFAULT_CONCURRENCY,
   DEFAULT_DB_PATH,
   DEFAULT_MODEL,
   DEFAULT_REQUEST_DELAY_MS,
