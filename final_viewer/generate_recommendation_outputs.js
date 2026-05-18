@@ -1829,6 +1829,7 @@ function isUsableCheckpointRecord({ record, args, persona, transaction, card }) 
   if (!record) return false;
   const isPreLlmSkipped = isPreLlmSkippedCheckpoint(record);
   if (!record.llm_normalized && !isPreLlmSkipped) return false;
+  if (record.model_error) return false;
 
   if (!sameNumber(record.persona?.persona_id, persona.persona_id)) return false;
   if (!sameNumber(record.persona?.previous_month_spending, persona.previous_month_spending)) return false;
