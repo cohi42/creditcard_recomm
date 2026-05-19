@@ -302,10 +302,90 @@ hr { border: none; border-top: 1px solid #e2e8f0; margin: 16px 0; }
 .raw-store { color: #2d3748; font-weight: 500;
              white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .raw-amt   { color: #1a56db; font-weight: 600; white-space: nowrap; text-align:right; }
+
+/* ── 전체 카드 할인액 분포 ── */
+.discount-chart-box {
+    border: 1px solid #dde6f5;
+    border-radius: 12px;
+    background: #fbfdff;
+    padding: 12px 14px 10px;
+    margin-bottom: 16px;
+}
+.discount-chart-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.discount-chart-title {
+    font-size: 0.92rem;
+    font-weight: 800;
+    color: #1a202c;
+    line-height: 1.35;
+}
+.discount-chart-meta {
+    font-size: 0.76rem;
+    color: #718096;
+    text-align: right;
+    line-height: 1.45;
+}
+.discount-chart {
+    height: 128px;
+    display: grid;
+    align-items: end;
+    gap: 0;
+    padding: 8px 0 4px;
+    border-top: 1px solid #eef2f7;
+    border-bottom: 1px solid #eef2f7;
+    background:
+        linear-gradient(to top, rgba(226,232,240,.85) 1px, transparent 1px) 0 100% / 100% 25%,
+        #ffffff;
+}
+.discount-bar {
+    width: 100%;
+    min-width: 0;
+    border-radius: 2px 2px 0 0;
+    background: linear-gradient(180deg, #4f6ef7, #27a3a3);
+}
+.discount-bar-zero {
+    height: 100% !important;
+    min-height: 100%;
+    background: rgba(243, 167, 167, 0.42);
+    border-top: 2px solid #e53e3e;
+    border-radius: 0;
+    opacity: 1;
+}
+.discount-chart-axis {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+    font-size: 0.72rem;
+    color: #a0aec0;
+}
+.discount-chart-legend {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 6px;
+    font-size: 0.73rem;
+    color: #718096;
+}
+.zero-swatch {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    background: #f3a7a7;
+    border-top: 1px solid #c53030;
+    margin-right: 4px;
+    vertical-align: -1px;
+}
 </style>
 """, unsafe_allow_html=True)
 
 DATA_FILE    = Path(__file__).parent / "recommendation_outputs" / "curated_recommendations.json"
+FULL_DATA_FILE = Path(__file__).parent / "recommendation_outputs" / "final_recommendations.json"
 TXN_FILE     = Path(__file__).parent / "persona_transactions.json"
 IMG_DIR      = Path(__file__).parent / "persona_image"
 CARD_RAW_DIR = Path(__file__).parent.parent / "card_crawling" / "data" / "raw"
@@ -313,6 +393,7 @@ DB_FILE      = Path(__file__).parent.parent / "db" / "cafe_v3.db"
 
 RANK_CSS   = {1: "rank-gold", 2: "rank-silver", 3: "rank-bronze"}
 RANK_EMOJI = {1: "🥇", 2: "🥈", 3: "🥉"}
+ZERO_DISCOUNT_THRESHOLD = 0
 
 
 def short_name(full: str) -> str:
@@ -323,6 +404,14 @@ def short_name(full: str) -> str:
 @st.cache_data
 def load_data():
     with open(DATA_FILE, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data
+def load_full_recommendations():
+    if not FULL_DATA_FILE.exists():
+        return {}
+    with open(FULL_DATA_FILE, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -665,6 +754,133 @@ def render_raw_transactions(persona_idx: int):
     )
 
 
+def curation_excluded_card_ids():
+    full_data = load_full_recommendations()
+    curated_data = load_data()
+    excluded_ids = set()
+    curated_ids_all = {
+        card.get("card_id")
+        for persona in curated_data.get("personas", [])
+        for card in persona.get("ranked_cards", [])
+    }
+
+    for curated_persona in curated_data.get("personas", []):
+        persona_id = curated_persona.get("persona_id")
+        full_persona = next(
+            (
+                p for p in full_data.get("personas", [])
+                if p.get("persona_id") == persona_id
+            ),
+            None,
+        )
+        if not full_persona:
+            continue
+
+        full_cards = full_persona.get("ranked_cards", [])
+        full_by_id = {card.get("card_id"): card for card in full_cards}
+        curated_ids = {
+            card.get("card_id")
+            for card in curated_persona.get("ranked_cards", [])
+        }
+        curated_original_ranks = [
+            full_by_id[card_id].get("rank")
+            for card_id in curated_ids
+            if card_id in full_by_id
+        ]
+        if not curated_original_ranks:
+            continue
+
+        cutoff_rank = max(curated_original_ranks)
+        for card in full_cards:
+            card_id = card.get("card_id")
+            if card.get("rank", 999999) <= cutoff_rank and card_id not in curated_ids:
+                excluded_ids.add(card_id)
+
+    return excluded_ids - curated_ids_all
+
+
+def full_ranking_cards_for_persona(persona_id: int):
+    excluded_ids = curation_excluded_card_ids()
+    full_data = load_full_recommendations()
+    for p in full_data.get("personas", []):
+        if p.get("persona_id") == persona_id:
+            return [
+                card
+                for card in sorted(p.get("ranked_cards", []), key=lambda c: c.get("rank", 999999))
+                if card.get("card_id") not in excluded_ids
+            ]
+    return []
+
+
+def render_discount_distribution_chart(p: dict):
+    cards = full_ranking_cards_for_persona(p["persona_id"])
+    if not cards:
+        return
+
+    amounts = [
+        max(0, _to_int_or_none(card.get("estimated_discount")) or 0)
+        for card in cards
+    ]
+    total_cards = len(cards)
+    zero_count = sum(1 for amount in amounts if amount <= ZERO_DISCOUNT_THRESHOLD)
+    positive_count = total_cards - zero_count
+    max_amount = max(amounts) if amounts else 0
+    excluded_count = len(curation_excluded_card_ids())
+    last_rank = cards[-1].get("rank", total_cards)
+    chart_height_px = 112
+
+    bars = []
+    for card, amount in zip(cards, amounts):
+        is_zero = amount <= ZERO_DISCOUNT_THRESHOLD
+        rank = card.get("rank", "-")
+        card_name = html.escape(str(card.get("card_name", "")), quote=True)
+        title = html.escape(
+            f"{rank}위 · {card.get('card_company', '')} {card.get('card_name', '')} · {amount:,}원",
+            quote=True,
+        )
+
+        if is_zero:
+            class_name = "discount-bar discount-bar-zero"
+            height_px = chart_height_px
+        else:
+            class_name = "discount-bar"
+            height_px = max(2, round((amount / max_amount) * chart_height_px)) if max_amount else 2
+
+        bars.append(
+            f'<div class="{class_name}" style="height:{height_px}px" title="{title}" '
+            f'aria-label="{title}" data-rank="{rank}" data-card="{card_name}"></div>'
+        )
+
+    zero_rate = (zero_count / total_cards * 100) if total_cards else 0
+    chart_html = "".join(bars)
+
+    st.markdown(
+        f"""
+        <div class="discount-chart-box">
+            <div class="discount-chart-head">
+                <div class="discount-chart-title">큐레이션 반영 할인액 분포</div>
+                <div class="discount-chart-meta">
+                    {total_cards:,}장 · 0원 {zero_count:,}장({zero_rate:.1f}%)<br>
+                    최대 {max_amount:,}원 · 혜택 있음 {positive_count:,}장 · 제외 {excluded_count:,}장
+                </div>
+            </div>
+            <div class="discount-chart" style="grid-template-columns: repeat({total_cards}, minmax(0, 1fr));">
+                {chart_html}
+            </div>
+            <div class="discount-chart-axis">
+                <span>1위</span>
+                <span>{last_rank}위</span>
+            </div>
+            <div class="discount-chart-legend">
+                <span><span class="zero-swatch"></span>0원 할인 구간</span>
+                <span>막대 높이 = 예상 할인액</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
 def render_cards(p: dict):
     card_img_urls = load_card_img_urls()
     st.markdown("#### 추천 카드 랭킹")
@@ -774,6 +990,7 @@ def main():
         render_raw_transactions(selected_idx)
 
     with col_cards:
+        render_discount_distribution_chart(persona)
         render_cards(persona)
 
 
