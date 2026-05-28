@@ -1,124 +1,102 @@
+# Logical ERD: Cafe Benefit Database
+
+보고서와 포스터 설명을 위한 논리 ERD입니다.  
+카드 추천에 직접 사용되는 핵심 정형 데이터 모델만 표시합니다.
+
+- 핵심 테이블: 6개
+
 ```mermaid
 erDiagram
     CARDS {
-        bigint card_id PK "JSON card idx"
-        varchar card_name
-        varchar card_company
-        varchar annual_fee
-        boolean is_credit
-        text raw_json
+        integer card_id PK "raw JSON idx"
+        text card_name "card display name"
+        text card_company "issuer/company"
+        text annual_fee "raw annual fee text"
+        integer is_credit "1 credit, 0 debit/check, null unknown"
+        text raw_json "original crawled JSON"
     }
 
     BENEFITS {
-        bigint benefit_id PK
-        bigint card_id FK
-        varchar category
-        decimal discount_rate
-        int discount_amount
-        varchar discount_type
-        varchar frequency_limit
-        int per_transaction_limit
-        int monthly_discount_limit
-        int min_spend
-        text raw_info
+        integer benefit_id PK
+        integer card_id FK
+        text category "benefit category"
+        real discount_rate "percentage discount/cashback rate"
+        integer discount_amount "fixed discount amount in KRW"
+        text discount_type "청구할인/현장할인/캐시백/etc."
+        text frequency_limit "raw count limit text, e.g. 월 2회"
+        integer per_transaction_limit "per-transaction discount cap"
+        integer monthly_discount_limit "monthly discount cap"
+        integer min_spend "minimum spend or performance threshold"
+        text raw_info "original benefit HTML/text"
     }
 
     BRANDS {
-        bigint brand_id PK
-        varchar brand_name UK
+        integer brand_id PK
+        text brand_name UK "normalized merchant/brand name"
     }
 
     BENEFIT_BRANDS {
-        bigint benefit_id FK
-        bigint brand_id FK
+        integer benefit_id PK, FK
+        integer brand_id PK, FK
     }
 
     PERFORMANCE_TIERS {
-        bigint tier_id PK
-        bigint benefit_id FK
-        int min_spend
-        int max_spend
-        int monthly_limit
+        integer tier_id PK
+        integer benefit_id FK
+        integer min_spend "tier lower bound"
+        integer max_spend "tier upper bound, null means open-ended"
+        integer monthly_limit "monthly cap for this tier"
     }
 
     EXCLUSIONS {
-        bigint exclusion_id PK
-        bigint benefit_id FK
-        varchar exclusion_type
+        integer exclusion_id PK
+        integer benefit_id FK
+        text exclusion_type "excluded store/payment/context text"
     }
 
-    CARDS ||--o{ BENEFITS : "1:N"
-    BENEFITS ||--o{ BENEFIT_BRANDS : "1:N"
-    BRANDS ||--o{ BENEFIT_BRANDS : "1:N"
-    BENEFITS ||--o{ PERFORMANCE_TIERS : "1:N"
-    BENEFITS ||--o{ EXCLUSIONS : "1:N"
+    CARDS ||--o{ BENEFITS : "has benefits"
+    BENEFITS ||--o{ BENEFIT_BRANDS : "targets brands"
+    BRANDS ||--o{ BENEFIT_BRANDS : "used by benefits"
+    BENEFITS ||--o{ PERFORMANCE_TIERS : "has performance tiers"
+    BENEFITS ||--o{ EXCLUSIONS : "has exclusions"
 ```
 
-```mermaid
-erDiagram
-    V_CARD_NOTICE {
-        bigint card_id PK
-        text notice_text "all 유의사항 merged"
-        int notice_count "유의사항 row count per card"
-    }
+## Table Roles
 
-    V_BENEFITS_FOR_STRUCTURING {
-        bigint benefit_id PK
-        bigint card_id
-        varchar category
-        text raw_info "benefit original HTML"
-        text common_notes "from V_CARD_NOTICE"
-        int common_note_count
-        text effective_info "benefit block only"
-    }
+| table | role |
+| --- | --- |
+| `cards` | 카드 1장 단위의 기본 정보와 크롤링 원본 JSON 저장 |
+| `benefits` | 카드 혜택 원문과 핵심 정형 필드 저장 |
+| `brands` | 혜택 대상 브랜드/가맹점명 사전 |
+| `benefit_brands` | 혜택과 브랜드의 다대다 연결 테이블 |
+| `performance_tiers` | 전월 실적 구간별 월 할인 한도 저장 |
+| `exclusions` | 백화점 입점 매장, 상품권 구매, 온라인 주문 등 제외 조건 저장 |
 
-    V_BENEFITS_FOR_RECOMMENDATION {
-        bigint benefit_id PK
-        bigint card_id
-        varchar category
-        text raw_info
-        text common_notes
-        int common_note_count
-        text effective_info "benefit + common notes"
-    }
+## Structured Benefit Fields
 
-    V_BENEFITS_FOR_MODEL {
-        bigint benefit_id PK
-        bigint card_id
-        varchar category
-        text raw_info
-        text common_notes
-        int common_note_count
-        text effective_info
-    }
+`benefits`의 스칼라 필드와 관계형 테이블을 합쳐 아래 조건을 정형화합니다.
 
-    BENEFITS ||--o{ V_CARD_NOTICE : "category='유의사항' source"
-    BENEFITS ||--o{ V_BENEFITS_FOR_STRUCTURING : "category!='유의사항' source"
-    V_CARD_NOTICE ||--o{ V_BENEFITS_FOR_STRUCTURING : "LEFT JOIN by card_id"
-    V_BENEFITS_FOR_STRUCTURING ||--|| V_BENEFITS_FOR_RECOMMENDATION : "context merge"
-    V_BENEFITS_FOR_RECOMMENDATION ||--|| V_BENEFITS_FOR_MODEL : "compatibility alias"
-```
+| field/table | meaning |
+| --- | --- |
+| `discount_rate` | 정률 할인/캐시백 비율 |
+| `discount_amount` | 정액 할인 금액 |
+| `discount_type` | 할인 방식 |
+| `frequency_limit` | 일/월/연 제공 횟수 제한 원문 |
+| `per_transaction_limit` | 건당 할인 한도 |
+| `monthly_discount_limit` | 월 할인 한도 |
+| `min_spend` | 최소 결제 금액 또는 단일 전월 실적 조건 |
+| `brands` + `benefit_brands` | 혜택 적용 브랜드/가맹점 |
+| `performance_tiers` | 다단계 전월 실적 구간과 구간별 월 한도 |
+| `exclusions` | 혜택 제외 조건 |
 
-```mermaid
-flowchart LR
-    A["benefits(category='유의사항')"] --> B["v_card_notice<br/>ordered by benefit_id"]
-    C["benefits(category!='유의사항')"] --> D["v_benefits_for_structuring"]
-    B --> D
-    D --> E["정형화 파이프라인<br/>structurization/structure_cafe_benefits_with_gemini.js"]
-    D --> F["v_benefits_for_recommendation"]
-    F --> G["추천/적용판단 파이프라인"]
-```
+## Current Data Size
 
-## 고려점 반영 요약
-1. 유의사항 2건 이상 카드 대응:
-- `v_card_notice`에서 `benefit_id` 순으로 `GROUP_CONCAT ... OVER (PARTITION BY card_id ORDER BY benefit_id)`를 사용해 결합 순서를 고정했습니다.
-- 유의사항 개수 확인을 위해 `notice_count`를 함께 노출합니다.
-- 다중 유의사항 구분을 위해 결합 구분자 `[[COMMON_NOTE_SPLIT]]`를 사용합니다.
 
-2. 경계 명확화:
-- `effective_info`에는 `[혜택 원문 시작]...[혜택 원문 끝]` / `[공통 유의사항 시작]...[공통 유의사항 끝]` 경계 태그를 사용합니다.
-- 동시에 `common_notes`를 별도 컬럼으로 노출해, 모델 프롬프트에서 원문과 공통조건을 분리 참조할 수 있게 했습니다.
-
-3. 용도 분리:
-- 정형화(benefit 필드 추출): `v_benefits_for_structuring` 사용
-- 추천/적용 판단(공통조건 반영): `v_benefits_for_recommendation` 또는 `v_benefits_for_model` 사용
+| table | rows |
+| --- | ---: |
+| `cards` | 2,790 |
+| `benefits` | 16,619 |
+| `brands` | 117 |
+| `benefit_brands` | 1,634 |
+| `performance_tiers` | 578 |
+| `exclusions` | 2,667 |
