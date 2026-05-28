@@ -977,7 +977,7 @@ def main():
     with col_select:
         st.markdown('<div class="radio-panel-title">페르소나 선택</div>', unsafe_allow_html=True)
         selected_idx = st.radio(
-            label="",
+            label="Persona selection",
             options=range(len(personas)),
             format_func=lambda i: names[i],
             label_visibility="collapsed",
