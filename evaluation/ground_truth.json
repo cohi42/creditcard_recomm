@@ -1,0 +1,3239 @@
+{
+  "source_xlsx": "C:\\Users\\mkc69\\OneDrive\\바탕 화면\\2026-1\\자기주도프로젝트\\simulation_data.xlsx",
+  "sheet": "Ground Truth",
+  "generated_at_utc": "2026-05-26T16:52:07.377Z",
+  "personas": [
+    "A",
+    "B",
+    "C"
+  ],
+  "card_ids": [
+    10,
+    105,
+    161,
+    208,
+    231,
+    263,
+    574
+  ],
+  "transactions": [
+    {
+      "id": 1,
+      "date": "4/1",
+      "time": "09:15",
+      "merchant": "맥도날드 강남점",
+      "amount": 8500,
+      "note": ""
+    },
+    {
+      "id": 2,
+      "date": "4/2",
+      "time": "08:40",
+      "merchant": "GS25 역삼점",
+      "amount": 2300,
+      "note": ""
+    },
+    {
+      "id": 3,
+      "date": "4/3",
+      "time": "13:25",
+      "merchant": "올리브영 홍대점",
+      "amount": 15000,
+      "note": ""
+    },
+    {
+      "id": 4,
+      "date": "4/4",
+      "time": "15:30",
+      "merchant": "스타벅스 신세계강남점",
+      "amount": 6000,
+      "note": ""
+    },
+    {
+      "id": 5,
+      "date": "4/5",
+      "time": "15:00",
+      "merchant": "스타벅스 롯데월드몰점",
+      "amount": 9000,
+      "note": ""
+    },
+    {
+      "id": 6,
+      "date": "4/6",
+      "time": "08:20",
+      "merchant": "스타벅스코리아",
+      "amount": 7200,
+      "note": "스타벅스코리아 = 온라인 주문 가정, 574번 오프라인 한정 제외 처리"
+    },
+    {
+      "id": 7,
+      "date": "4/7",
+      "time": "09:10",
+      "merchant": "이디야 서초점",
+      "amount": 3500,
+      "note": ""
+    },
+    {
+      "id": 8,
+      "date": "4/8",
+      "time": "10:50",
+      "merchant": "탐앤탐스 건대점",
+      "amount": 4200,
+      "note": ""
+    },
+    {
+      "id": 9,
+      "date": "4/9",
+      "time": "10:05",
+      "merchant": "카페 온도",
+      "amount": 4500,
+      "note": ""
+    },
+    {
+      "id": 10,
+      "date": "4/10",
+      "time": "13:35",
+      "merchant": "블루보틀 삼청점",
+      "amount": 8500,
+      "note": ""
+    },
+    {
+      "id": 11,
+      "date": "4/11",
+      "time": "08:32",
+      "merchant": "스타벅스 강남역점",
+      "amount": 5500,
+      "note": ""
+    },
+    {
+      "id": 12,
+      "date": "4/12",
+      "time": "12:40",
+      "merchant": "커피빈 역삼점",
+      "amount": 12000,
+      "note": ""
+    },
+    {
+      "id": 13,
+      "date": "4/13",
+      "time": "11:20",
+      "merchant": "엔제리너스 홍대점",
+      "amount": 8000,
+      "note": ""
+    },
+    {
+      "id": 14,
+      "date": "4/14",
+      "time": "09:45",
+      "merchant": "투썸플레이스 강남점",
+      "amount": 15000,
+      "note": ""
+    },
+    {
+      "id": 15,
+      "date": "4/15",
+      "time": "16:10",
+      "merchant": "폴바셋 여의도점",
+      "amount": 7500,
+      "note": ""
+    },
+    {
+      "id": 16,
+      "date": "4/16",
+      "time": "10:30",
+      "merchant": "할리스 신촌점",
+      "amount": 6500,
+      "note": ""
+    },
+    {
+      "id": 17,
+      "date": "4/17",
+      "time": "11:15",
+      "merchant": "이디야 합정점",
+      "amount": 9500,
+      "note": ""
+    },
+    {
+      "id": 18,
+      "date": "4/18",
+      "time": "08:55",
+      "merchant": "커피빈 역삼점",
+      "amount": 6000,
+      "note": ""
+    },
+    {
+      "id": 19,
+      "date": "4/18",
+      "time": "14:50",
+      "merchant": "스타벅스 잠실점",
+      "amount": 5000,
+      "note": ""
+    },
+    {
+      "id": 20,
+      "date": "4/19",
+      "time": "09:20",
+      "merchant": "스타벅스 강남역점",
+      "amount": 11000,
+      "note": ""
+    },
+    {
+      "id": 21,
+      "date": "4/19",
+      "time": "15:25",
+      "merchant": "이디야 서초점",
+      "amount": 4500,
+      "note": ""
+    },
+    {
+      "id": 22,
+      "date": "4/20",
+      "time": "10:45",
+      "merchant": "스타벅스 강남역점",
+      "amount": 5000,
+      "note": ""
+    },
+    {
+      "id": 23,
+      "date": "4/21",
+      "time": "14:25",
+      "merchant": "커피빈 가로수길점",
+      "amount": 7000,
+      "note": ""
+    },
+    {
+      "id": 24,
+      "date": "4/22",
+      "time": "11:40",
+      "merchant": "스타벅스 합정점",
+      "amount": 6500,
+      "note": ""
+    }
+  ],
+  "values": [
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 1,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 2,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 3,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 4,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 5,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 4000
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 1440
+    },
+    {
+      "transaction_id": 6,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 4000
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 1440
+    },
+    {
+      "transaction_id": 6,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 720
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 4000
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 1440
+    },
+    {
+      "transaction_id": 6,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 350
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 1050
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 175
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 350
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 1050
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 175
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 350
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 1050
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 7,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 175
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 420
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 1260
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 840
+    },
+    {
+      "transaction_id": 8,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 420
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 1260
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 840
+    },
+    {
+      "transaction_id": 8,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 420
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 1260
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 840
+    },
+    {
+      "transaction_id": 8,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 450
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 1350
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 450
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 1350
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 450
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 1350
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 9,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 850
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 2550
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 850
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 2550
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 850
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 2550
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 10,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 2750
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 11,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 275
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 2750
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 11,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 275
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 2750
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 11,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 275
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 3600
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 1040
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 3600
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 1040
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 1200
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 3600
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 1040
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 12,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 800
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 13,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 1500
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 1500
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 1500
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 14,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 750
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 15,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 650
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 650
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 650
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 16,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 950
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 475
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 950
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 475
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 950
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 17,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 475
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 600
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 18,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 210
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 210
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 210
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 19,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 1400
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 3300
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 1100
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 3300
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 20,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 550
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 225
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 225
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 21,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 225
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 30
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 500
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 500
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 22,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 250
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 700
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 700
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 23,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "A",
+      "card_id": 574,
+      "expected_amount": 325
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "B",
+      "card_id": 574,
+      "expected_amount": 325
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 10,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 105,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 161,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 208,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 231,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 263,
+      "expected_amount": 0
+    },
+    {
+      "transaction_id": 24,
+      "persona": "C",
+      "card_id": 574,
+      "expected_amount": 325
+    }
+  ]
+}
